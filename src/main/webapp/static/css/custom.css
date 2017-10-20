@@ -1,0 +1,143 @@
+.dropbtn {
+    background-color: white;
+    color: blue;
+    padding: 15px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+.dropbtn1 {
+    background-color: #4d4d4f;
+    color: white;
+    padding: 2px;
+    font-size: 15px;
+	font-type: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+	
+}
+.dropdown1 {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 150px;
+	background-color:White;
+    z-index: 1;
+}
+.dropdown1-content {
+    display: none;
+    position: absolute;
+    min-width: 152px;
+	background-color:White;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown1-content a {
+    color: black;
+    padding: 2px;
+    text-decoration: none;
+	font-size: 10px;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #DADADA}
+
+.dropdown1-content a:hover {background-color: #DADADA}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown1:hover .dropdown1-content {
+    display: block;
+}
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+.dropdown1:hover .dropbtn1 {
+    background-color: #4d4d4f;
+}
+.container1{
+	background-color: #0B79BF;
+	min-height:55px;
+	margin:0px;
+}
+
+.container2{
+	background-color: #FFF2BD;
+	min-height:80px;
+	max-width:180px;
+	margin:2px;
+	padding: 10px;
+}
+.container3{
+	background-color: #F5F5F5;
+	min-height:150px;
+	max-width:180px;
+	margin:2px;
+	padding: 10px;
+}
+.container4{
+	background-color: #0B79BF;
+	min-height:100px;
+	margin:0px;
+}
+.container5{
+	background-color: #ffffff;
+	min-height:200px;
+	margin-top:20px;
+	margin-right:60px;
+	margin-left:-30px;
+}
+.container6{
+	background-color: #ffffff;
+	min-height:80px;
+	margin-top:20px;
+	margin-right:0px;
+	margin-left:-100px;
+}
+.form-group.required .control-label:after {
+  content:" *";
+  color:black;
+}
+#searcher {
+        width: 750px;
+        margin: 0 auto;
+    }
+.carousel.fade {
+     opacity: 1;
+}
+.carousel.fade .item {
+    transition: opacity ease-out .7s;
+    left: 0;
+    opacity: 0; /* hide all slides */
+    top: 0;
+    position: absolute;
+    width: 100%;
+    display: block;
+}
+.carousel.fade .item:first-child {
+    top: auto;
+    opacity: 1; /* show first slide */
+    position: relative;
+}
+.carousel.fade .item.active {
+    opacity: 1;
+}
+.carousel-fade .carousel.active {
+  opacity: 1;
+}
+

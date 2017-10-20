@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Morwamckay.com">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Register-TAKEALOT</title>
+    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/custom.css" rel="stylesheet">
+    <link href="./static/css/dropdown.css" rel="stylesheet">
+    <link rel="Shortcut Icon" href="./static/icons/favicon.ico" type="image/x-icon">
+    <link href="./static/css/awesome-fonts.css" rel="stylesheet">
+    <script src="./static/js/app.js"></script>
+    <script src="./static/js/controller/app_controller.js"></script>
+    <script src="./static/js/service/http_service.js"></script>
+    <script src="./static/js/angular.js"></script>
+    <script src="./static/js/angular-route.js"></script>
+    <script src="./static/js/angular.min.js"></script>
+
+</head>
+  
+  <body ng-app="myApp" >
+  <!--Navbar-->
+   <!--Navbar-->
+  <nav class="navbar navbar-white navbar-top" id="my-navbar">
+	<div class="container">
+		<div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                    </button>
+
+                    <a href="</index" class="navbar-brand"><img style="max-width: 160px; margin-top: -7px;" src="./static/img/Capture.PNG" alt="Home"></a>
+		</div><!-- end navbar header-->
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav">
+			<li><a href="#contact">Help</a>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a>Hi!</a>
+				<li><a ng-click="toLogin()">Login</a></li>
+				<li><a ng-click="newUser()">Register</a></li>
+				<li> 
+				<div class="dropdown" title="Account">
+					<button class="dropbtn" value="My Account">
+					<span class="caret"></span></button>
+					<div class="dropdown-content">
+						<a href="#features">My Account</a>
+						<a href="#">Track Order</a>
+						<a href="#feedback">Log Return</a>
+						<a href="#gallery">Invoices</a>
+						<a href="#feedback">Personal Details</a>
+						<a href="#gallery">Digital Library</a>
+					</div>
+				</div>
+				</li>
+				<li>
+				<div class="Wish_list">
+                                    <button class="list" ng-click="cart.htm" title="wishlist" style="margin:10px; border:0px; color: White; background-color: red;">
+					<span style="padding:10px;" class="glyphicon glyphicon-heart"></span>
+					<span>0</span></button>
+				</div>
+				</li>
+				<li>
+				<div class="Cart">
+					<button class="list" ng-click="cart.htm" title="wishlist" style="margin-top:10px; border:0px; color: White; background-color: green;">
+					<span style="padding:10px;" class="glyphicon glyphicon-shopping-cart"></span>
+					<span>0</span></button>
+				</div>
+				</li>
+			</ul>
+			
+		</div>
+	</div><!-- End Container-->
+  </nav><!-- End Navbar-->
+
+  <!-- container-->
+  
+
+	<div class="container1">
+		<div class="dropdown1" style="margin-top:10px; margin-left:40px; margin-bottom:10px;">
+			<button class="dropbtn1">Shop by Department
+				<span class="caret"></span></button>
+				<div class="dropdown1-content">
+					<a href="#">Liqour & Soft Drinks</a>
+					<a href="#">Computers & Tablets</a>
+					<a href="#">Cellphones & GPS</a>
+					<a href="#">TV, Audio & Video</a>
+					<a href="#">Cameras</a>
+					<a href="#">Office & Stationary</a>
+					<a href="#">Books</a>
+					<a href="#">Gaming</a>
+					<a href="#">Movie & TV</a>
+					<a href="#">Music</a>
+					<a href="#">Home & Kitchen</a>
+					<a href="#">DIY & Auto</a>
+					<a href="#">Garden, Pool & Patio</a>
+					<a href="#">Toys</a>
+					<a href="#">Fashion</a>
+					<a href="#">Sport</a>
+					<a href="#">Camping & Outdoor</a>
+					<a href="#">Digital Library</a>
+					<a href="#">Baby & Toddler</a>
+					<a href="#">Pets</a>
+					<a href="#">Luggage & Travel</a>
+					<a href="#">Vouchers</a>
+					<a href="#" style="background-color:#72DB8E; color:white; font-size:18px;">DAILY DEALS</a>
+					
+				</div>
+		</div>
+	
+	</div><!-- End of container-->
+	
+	<!-- form container-->
+        <div class="container">
+             <div class="row">
+			<div style="padding-top:40px;" class="col-md-3">
+				<div class ="container2">
+                                    <img class="center-block " src="./static/icons/delivery-icon.png" width="48" alt="delivery car icon" />
+					<div class="call-to-action" style="text-align:center">Enjoy <span class="emphasis">free delivery</span><br/>
+					worth R60 on your first <br/> order</div>
+					<div class="terms-and-conditions" style="text-align:center"><a href="http://www.takealot.com/about/free-delivery-on-your-first-order" target="_blank">T&amp;Cs apply</a></div>
+				</div>
+				<div class ="container3">
+					<p ><strong>Safe Shopping at Takealot</strong></p>
+					<p>Rest assured your transaction is safe.</p>
+					<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=lIXaUCxWLw82GGzts7WRPoMYg3YckhnWQpeicMnsG7mPgolPwcUUpLkrXxtq"></script></span>
+					<br/>
+					<br/>
+					<p>This technology safeguards your personal information and guarantees privacy.</p>
+
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="panel-heading">
+					<div class="panel-title text-left">
+                                            <h1 class="title"><a> Register </a></h1>
+						<hr />
+					</div>
+				</div> 
+				<div class="main-login main-center"  >
+                                    <div ng-controller="appctrl" >
+                                        <form name="regist" id="register" class="form-horizontal" ng-submit="createUser()">
+    
+                                                <div class="form-group">
+                                                 
+                                                    <input type="hidden" class="form-control" id="userID" ng-model="userID" >
+                                                   
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="firstName">First Name:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="firstName" ng-model="firstName" required>
+                                                    <span ng-show="regist.firstName.$touched && registration.firstName.$invalid">Mobile number is required.</span>
+                                                  </div>
+                                                </div>
+                                               <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="lastName">Last Name:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="lastName" ng-model="lastName" required>
+                                                    <span ng-show="registration.lastName.$touched && registration.lastName.$invalid">Mobile number is required.</span>
+                                                  </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="emailAddress">Email Address:</label>
+                                                  <div class="col-sm-10">
+                                                    <input type="email" class="form-control" id="emailAddress" ng-model="emailAddress" required>
+                                                    <!--<span ng-show="registration.emailAddress.$touched && registration.emailAddress.$invalid">Mobile number is required.</span>-->
+                                                  </div>
+                                                </div>
+                                                <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="password">Password:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="password" class="form-control" id="password" ng-model="password" required>
+                                                    <!--<span ng-show="registration.password.$touched && registration.password.$invalid">Password is required.</span>-->
+                                                  </div>
+                                                </div>
+                                               <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="phone">Mobile Number:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="phone" ng-model="phone" required>
+                                                    <!--<span ng-show="registration.phone.$touched && registration.phone.$invalid">Mobile number is required.</span>-->
+                                                  </div>
+                                                </div>
+                                               <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="gender">Gender:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="gender" ng-model="gender">
+                                                  </div>
+                                                </div>
+                                               <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="birthdate">Date of birth:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="birthdate" ng-model="birthdate">
+                                                  </div>
+                                                </div>
+                                                <div class="form-group"> 
+                                                  <div class="col-sm-offset-2 col-sm-10">
+                                                    <input type="submit" class="btn btn-info btn-md" value="Register Now"/>
+                                                  </div>
+                                                </div>
+                                        </form>
+                                    </div>
+				</div> 
+			</div>
+                </div> 
+        </div>  
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./static/js/ajaxJquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./static/js/bootstrap.min.js"></script>
+	<script src="./static/js/scripts.js"></script>
+ </body>
+</html>
+
+
+	
+	
+	
+	
+	
+	
