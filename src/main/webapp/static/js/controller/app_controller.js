@@ -191,7 +191,7 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
 					getFormData:formdata
 					
 			};
-			alert(productImage +''+ productName +''+ productPrice)
+			alert(productImage +''+ productName +''+ productPrice);
 			httpService.getDataByForm(details).then(onSuccessRetrivals, onErrorProduct);
 		 };
 		 var onErrorProduct = function(reason) {
@@ -211,27 +211,27 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
         };
    
      }
-])
- .directive('bindFile', [function () {
-    return {
-        require: "ngModel",
-        restrict: 'A',
-        link: function ($scope, el, attrs, ngModel) {
-            el.bind('change', function (event) {
-                ngModel.$setViewValue(event.target.files[0]);
-                $scope.$apply();
-            });
-            
-            $scope.$watch(function () {
-                return ngModel.$viewValue;
-            }, function (value) {
-                if (!value) {
-                    el.val("");
-                }
-            });
-        }
-    };
-}]);
+]);
+// .directive('bindFile', [function () {
+//    return {
+//        require: "ngModel",
+//        restrict: 'A',
+//        link: function ($scope, el, attrs, ngModel) {
+//            el.bind('change', function (event) {
+//                ngModel.$setViewValue(event.target.files[0]);
+//                $scope.$apply();
+//            });
+//            
+//            $scope.$watch(function () {
+//                return ngModel.$viewValue;
+//            }, function (value) {
+//                if (!value) {
+//                    el.val("");
+//                }
+//            });
+//        }
+//    };
+//}]);
 
 angular.module('myApp').controller('cartctrl',["$scope", "httpService","$location","$window",function($scope,httpService,$location,$window){
 	
@@ -252,7 +252,7 @@ angular.module('myApp').controller('cartctrl',["$scope", "httpService","$locatio
 
         var successart=function successCallback(data) {
 
-               alert('Fetched Products')
+               alert('Fetched Products');
                    $scope.productList=data;
 
         };

@@ -67,12 +67,12 @@
                                         <div class="form-group">
                                           <label class="control-label col-sm-2" for="productImage">Product Image:</label>
                                           <div class="col-sm-10"> 
-                                             <input type="file" data-bind-file="" data-ng-model="productImage" />
-                                                   <div ng-show="productImage">
+                                             <input type="file" id="productImage" data-bind-file="" ng-model="productImage" />
+                                              <div ng-show="productImage">
                                                         {{productImage.name}}<br />
                                                         {{productImage.size}} byte(s)<br/>
                                                         {{productImage.type}}
-                                                   </div>
+                                                   </div>     
 
                                           </div>
                                         </div>
@@ -175,7 +175,7 @@
 			<li><a href="#">Cameras</a></li>
 			<li><a href="#">TV,Audio & Video</a></li>
 			<li><a href="#">Cellular & GPS</a></li>
-			<li><a href="#">Movies &TV </a></li>
+			<li><a href="#">Movies & TV </a></li>
 			<li><a href="#">Gaming</a></li>
 			<li><a href="#">Books</a></li>
 			<li><a href="#">Music</a></li>
