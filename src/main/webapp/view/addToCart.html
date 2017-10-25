@@ -159,25 +159,27 @@
 	
 	</div><!-- End of container-->
         <div class="row">
-        <div class="container" ng-controller="cartctrl">
+         <div class="container" ng-controller="cartctrl">
             
              <table class="table" >
                     <thead>
                         <tr>
-                            <!--<th>Product Image</th>-->
-                            <th>Product Names</th>
-                            <th>Product Price</th>
-                            
+                           <!--<th>Product Image</th>-->
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th ></th>
+                            <th ></th>
                         </tr>
                     </thead>
-                    <tbody data-ng-init ="getAllProducts()">
-                      <tr class="info" data-ng-repeat="product in productList">
-                       <!-- <td>{{product.productImage}}</td>-->
-                        <td>{{product.productName}}</td>
-                        <td>{{product.productPrice}}</td>
+                    <tbody data-ng-init ="getProducts()">
+                      <tr  data-ng-repeat="item in productList">
+                        <!--<td>{{item.productImage}}</td>-->
+                        <td>{{item.productName}}</td>
+                        <td>R{{item.productPrice}}</td>
                        
                         <td>
-                            <button type="button" ng-click="addToCart(product)" class="btn btn-success custom-width">Add To Cart</button> 
+                            <button type="button" ng-click="addToCart(item)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
+                            <button type="button" ng-click="addToWishList(item)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
                         </td>
                       </tr>
                     </tbody>

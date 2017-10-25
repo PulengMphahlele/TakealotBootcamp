@@ -166,7 +166,7 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
                                     $location.path('/home');
 
                             };
-		 /*To add the article*/
+		 /*To add the Product*/
              
 		
 		$scope.addProduct = function(){
@@ -237,39 +237,35 @@ angular.module('myApp').controller('cartctrl',["$scope", "httpService","$locatio
 	
         
 	//To Fetch Product List		 
-				
-        $scope.getAllProducts = function(){
-            var formdata={"productId":$window.localStorage.getItem("productId")};
-            var details={
 
-                            getUrl:"rest/getAllProducts",
-                            getFormData:formdata
+            $scope.getProducts = function(){
+                          /*var formdata={
+                                          "productId":$window.localStorage.getItem("productId")
+                                  };*/
+                          var details={
 
-            };
+                                          getUrl:"rest/getAllProducts",
+                                          /*getFormData:formdata*/
 
-            httpService.getDataByForm(details).then(successart, artfailure);
-       };
+                          };
 
-        var successart=function successCallback(data) {
+                          httpService.getData(details).then(successart, artfailure);
+           };
 
-               alert('Fetched Products');
-                   $scope.productList=data;
+           var successart=function successCallback(data) {
 
-        };
+                          alert('Fetched Products');
+                             $scope.productList=data;
 
-            var artfailure=function errorCallback(reason) {
-                    alert('Not Able to Fetch Product');
-            };
+                            };
+
+                            var artfailure=function errorCallback(reason) {
+                                    alert('Not Able to Fetch Product');
+                            };
 
 
-            $scope.getProductDetails();
-            /*To show Products*/
-            $scope.productShow=function(item){
-                    $scope.content=item.productImage;
-                    $scope.content=item.productName;
-                    $scope.content=item.productPrice;
-
-            };
+                            $scope.getProducts();
+                            /*To show Products*/
 
            
 		$scope.cart = [];

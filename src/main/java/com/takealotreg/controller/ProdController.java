@@ -2,32 +2,32 @@ package com.takealotreg.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.takealotreg.model.User;
 import com.takealotreg.model.Product;
 import com.takealotreg.service.ProdService;
-
+import java.util.ArrayList;
 
 @RestController
+
 
 public class ProdController {
 
 	@Autowired
 	private ProdService service;
-        
-   
+	
+      
         
 	//-------------------Add Product--------------------------------------------------------
 	
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public Product addProduct(@RequestBody Product product){
-                    Product prod=new Product();
-                    
+		Product prod=new Product();
                 
 			prod.setProductId(product.getProductId());
 			prod.setProductImage(product.getProductImage());
@@ -45,10 +45,10 @@ public class ProdController {
 		}
         
         @RequestMapping(value = "/getAllProducts", method = RequestMethod.POST)
-   
 	public List<Product> getProducts(){
-            
-		List<Product> prodList=service.getAllProducts();
+		List<Product> prodList=new ArrayList<>();
+
+	prodList=service.getAllProducts();
 		return prodList;
 	}
 	
