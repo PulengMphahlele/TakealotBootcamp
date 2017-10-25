@@ -254,7 +254,7 @@ angular.module('myApp').controller('cartctrl',["$scope", "httpService","$locatio
 
            var successart=function successCallback(data) {
 
-                          alert('Fetched Products');
+                         
                              $scope.productList=data;
 
                             };
@@ -269,29 +269,41 @@ angular.module('myApp').controller('cartctrl',["$scope", "httpService","$locatio
 
            
 		$scope.cart = [];
-
-		
-		$scope.addToCart = function (product) {
-			var found = false;
-			$scope.cart.forEach(function (item) {
-				if (item.id === product.productId) {
-					item.quantity++;
-					found = true;
-				}
-			});
-			if (!found) {
-				$scope.cart.push(angular.extend({quantity: 1}, product));
-			}
-		};
-
-		$scope.getCartPrice = function () {
-			var total = 0;
-			$scope.cart.forEach(function (product) {
-				total += product.price * product.quantity;
-			});
-			return total;
-		};
+               
                 
+		$scope.addToCart = function (product) {
+			
+				$scope.cart.push(product);
+			
+		};
+                 $scope.removeCartItem = function(product){
+                    var index = $scope.cart.indexOf(product);
+                    $scope.cart.splice(index, 1);
+                } ;
+                
+                  $scope.getCartTotal = function(){
+                        var total = 0;
+                        for(var i = 0; i < $scope.cart.length; i++){
+                            var cartItem = $scope.cart[i];
+                            total += (cartItem.price);
+                        }
+                        return total;
+                    };
+//
+//		$scope.getCartPrice = function () {
+//			var total = 0;
+//			$scope.cart.forEach(function (product) {
+//				total += product.price * product.quantity;
+//			});
+//			return total;
+//		};
+//                
+                $scope.getCartItemNo = function () {
+                        
+			var cartCnt = $scope.cart.length ;
+                      
+			return cartCnt;
+		};
                 
       /*Go to Home*/
       $scope.goToHome=function(){
