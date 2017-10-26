@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.takealotreg.form.UserForm;
+import com.takealotreg.form.CartForm;
+import com.takealotreg.model.Cart;
 import com.takealotreg.model.User;
 import com.takealotreg.model.Admin;
 import com.takealotreg.service.UserService;
+import com.takealotreg.service.CartService;
+import java.util.ArrayList;
 
 @RestController
 
@@ -20,6 +24,8 @@ public class UserController {
 
 	@Autowired
 	private UserService service;
+        @Autowired
+	private CartService ser;
 	
       
         /*
@@ -71,7 +77,37 @@ public class UserController {
 		return null;
 	
 		}
-        
+        @RequestMapping(value = "/addCart", method = RequestMethod.POST)
+	public Cart isValid(@RequestBody CartForm product){
+		Cart prod=new Cart();
+                prod.setCartId(product.getProductId());
+                prod.setProductName(product.getProductName());
+		prod.setProductPrice(product.getProductPrice());
+		prod.setUsers(ser.getUserByEmailAddress(product.getEmailAddress()));
+		
+		int res= ser.saveProduct(prod);
+		if(res==1){
+			return prod;
+		}
+		return null;
+	
+		}
+	
+	@RequestMapping(value = "/getAllCart", method = RequestMethod.POST)
+	public List<Cart> getProduct(@RequestBody User user){
+		List<Cart> prodList=new ArrayList<>();
 
+	prodList=ser.getAllProducts(user.getEmailAddress());
+		return prodList;
+	}
+	
+	@RequestMapping(value = "/getProduct", method = RequestMethod.POST)
+	public Cart getArticleDetail(@RequestBody Cart prod){
+	Cart artcl=new Cart();
+
+	artcl=ser.getProduct(prod.getProductId());
+		return artcl;
+	}
+        
 
 }
