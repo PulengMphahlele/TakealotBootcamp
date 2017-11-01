@@ -165,15 +165,17 @@
                            <!--<th>Product Image</th>-->
                             <th>Products</th>
                             <th>Price</th>
+                             <th >Quantity</th>
                             <th ></th>
                             <th ></th>
                         </tr>
                     </thead>
                     <tbody data-ng-init ="getProducts()">
                       <tr  data-ng-repeat="item in productList">
-                        <!--<td>{{item.productImage}}</td>-->
+                        <!--<td>{{item.productImage}}</td>--> 
                         <td>{{item.productName}}</td>
                         <td>R{{item.productPrice}}</td>
+                        <td> <div class="col-sm-3">  <input type="number" class="form-control" id="quantity" ng-model="quantity"></div></td>
                        
                         <td>
                             <button type="button" ng-click="addToCart(item)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
