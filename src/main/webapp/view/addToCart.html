@@ -19,7 +19,7 @@
     <script src="./static/js/angular-route.js"></script>
     <script src="./static/js/angular.min.js"></script>
   </head>
-  <body ng-app="myApp">
+  <body ng-app="myApp" ng-controller="cartctrl">
   <!--Navbar-->
   <nav class="navbar navbar-white navbar-top" id="my-navbar">
 	<div class="container" style="margin-right:50px; width: 1000px;">
@@ -53,7 +53,7 @@
 					<button class="list" style="margin:10px; border:0px; color: White; background-color: red;">
 					<a href="wishlist.htm" title="Wish List"></a>
 					<span style="padding:10px;" class="glyphicon glyphicon-heart"></span>
-					<span>0</span></button>
+					<span>{{count1}}</span></button>
 				</div>
 				</li>
 				<li>
@@ -61,7 +61,7 @@
 					<button class="list" style="margin-top:10px; border:0px; color: White; background-color: green;">
 					<a href="cart.htm" title="Cart"></a>
 					<span style="padding:10px;" class="glyphicon glyphicon-shopping-cart"></span>
-					<span>{{cartCnt}}</span></button>
+					<span>{{count}}</span></button>
 				</div>
 				</li>
 			</ul>
@@ -157,12 +157,28 @@
 	
 	</div><!-- End of container-->
         <div class="row">
-         <div class="container" ng-controller="cartctrl">
             
-             <table class="table" >
+         <div class="container" >
+            <form>
+                <div id = "bg-background" class = "col-md-3">
+                    <h4>PRODUCTS<h4>
+                    <hr style = "border-top:1px groovy #ccc;">
+                    <div id = "product">
+                        <div id = "p_list" ng-repeat = "product in productList ">
+                            <h3>{{product.productName}}</h3>
+                            <!--<center><img ng-src = "{{product.productImage}}"/></center>-->
+                            <div><label>Price: R{{product.productPrice}}</label></div>
+                             <input type="submit"  ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right value="Add To Cart"/> 
+                            <input type="submit"  ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right value="Add To Wish List"/>
+                        </div>
+                </div>
+            </form>
+         </div>
+            
+            <!--<table class="table" >
                     <thead>
                         <tr>
-                           <!--<th>Product Image</th>-->
+                           <!--<th>Product Image</th>->
                             <th>Products</th>
                             <th>Price</th>
                              <th >Quantity</th>
@@ -171,20 +187,21 @@
                         </tr>
                     </thead>
                     <tbody data-ng-init ="getProducts()">
-                      <tr  data-ng-repeat="item in productList">
-                        <!--<td>{{item.productImage}}</td>--> 
-                        <td>{{item.productName}}</td>
-                        <td>R{{item.productPrice}}</td>
-                        <td> <div class="col-sm-3">  <input type="number" class="form-control" id="quantity" ng-model="quantity"></div></td>
+                      <tr  data-ng-repeat="product in productList">
+                        <!--<td>{{item.productImage}}</td>-> 
+                        <td>{{product.productName}}</td>
+                        <td>R{{product.productPrice}}</td>
+                        <td> <div class="col-sm-3">  <input type="number" class="form-control" id="quantity" ng-model="product.quantity"></div></td>
                        
                         <td>
-                            <button type="button" ng-click="addToCart(item)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
-                            <button type="button" ng-click="addToWishList(item)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
+                            <button type="button" ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
+                            <button type="button" ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
                         </td>
                       </tr>
                     </tbody>
                 </table>
-            
+-->
+         
             </div>
         </div>
 	<a href="#" style="text-align:center; margin-top:10px;"><p>Switch to Mobile</p></a>

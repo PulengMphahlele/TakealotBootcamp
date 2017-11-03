@@ -23,10 +23,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 		
 		var onSuccessRetrival = function(data) {
 		
-			$window.localStorage.setItem("emailAddress",data.emailAddress);
-			$scope.logged=data.emailAddress;
-			console.log($scope.logged);
-			
+			$window.localStorage.setItem("emailAddress",data.emailAddress);		
 			$location.path('/home');
                        };
                        $scope.toLogin=function(){
@@ -235,76 +232,90 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
 
 angular.module('myApp').controller('cartctrl',["$scope", "httpService","$location","$window",function($scope,httpService,$location,$window){
 	
-        
-	//To Fetch Product List		 
+       $scope.cart = []; 
+       $scope.wish = []; 
+       
+        $scope.addToCart = function(product){
+                
+           var found = false;
+            $scope.cart.forEach(function (item) {
+                    if (item.id === product.productId) {
+                            item.quantity++;
+                            found = true;
+                    }
+            });
+            if (!found) {
+                    $scope.cart.push(angular.extend({quantity: 1}, product));
+            }
+            alert('Cart updated');
+        };
+            
+        //To Fetch Product List		 
+        $scope.getProducts = function(){
+            /*var formdata={
+                            "productId":$window.localStorage.getItem("productId")
+                    };*/
+            var details={
 
-            $scope.getProducts = function(){
-                          /*var formdata={
-                                          "productId":$window.localStorage.getItem("productId")
-                                  };*/
-                          var details={
+                            getUrl:"rest/getAllProducts",
+                            /*getFormData:formdata*/
 
-                                          getUrl:"rest/getAllProducts",
-                                          /*getFormData:formdata*/
+            };
 
-                          };
-
-                          httpService.getData(details).then(successart, artfailure);
+                httpService.getData(details).then(successart, artfailure);
            };
 
            var successart=function successCallback(data) {
 
-                         
-                             $scope.productList=data;
 
-                            };
+            $scope.productList=data;
 
-                            var artfailure=function errorCallback(reason) {
-                                    alert('Not Able to Fetch Product');
-                            };
+           };
+
+           var artfailure=function errorCallback(reason) {
+                   alert('Not Able to Fetch Product');
+           };
 
 
-                            $scope.getProducts();
-                            /*To show Products*/
-
-           
-		$scope.cart = [];
-               
-                
-		$scope.addToCart = function (product) {
+           $scope.getProducts();
+           /*Add product to cart*/
+           $scope.$watch('count',function(newValue,oldValue){
+			$scope.count=$scope.cart.length;
+			console.log($scope.count+"**");
 			
-				$scope.cart.push(product);
 			
-		};
-                 $scope.removeCartItem = function(product){
-                    var index = $scope.cart.indexOf(product);
-                    $scope.cart.splice(index, 1);
-                } ;
+		});
+           $scope.$watch('count1',function(newValue,oldValue){
+			$scope.count1=$scope.wish.length;
+			console.log($scope.count1+"**");
+			
+			
+		});
                 
-                  $scope.getCartTotal = function(){
-                        var total = 0;
-                        for(var i = 0; i < $scope.cart.length; i++){
-                            var cartItem = $scope.cart[i];
-                            total += (cartItem.price);
-                        }
-                        return total;
-                    };
+      
+         $scope.removeCartItem = function(product){
+            var index = $scope.cart.indexOf(product);
+            $scope.cart.splice(index, 1);
+             
+        } ;
+
+//          $scope.getCartTotal = function(){
+//                var total = 0;
+//                for(var i = 0; i < $scope.cart.length; i++){
+//                    var cartItem = $scope.cart[i];
+//                    total += (cartItem.price);
+//                }
+//                return total;
+//            };
 //
-//		$scope.getCartPrice = function () {
-//			var total = 0;
-//			$scope.cart.forEach(function (product) {
-//				total += product.price * product.quantity;
-//			});
-//			return total;
-//		};
-//                
-                $scope.getCartItemNo = function () {
-                        
-			var cartCnt = $scope.cart.length ;
-                      
-			return cartCnt;
+		$scope.getCartTotal = function () {
+			var total = 0;
+			$scope.cart.forEach(function (product) {
+				total += product.productPrice * product.quantity;
+			});
+			return total;
 		};
-                
+     
       /*Go to Home*/
       $scope.goToHome=function(){
               $location.path('/home');
