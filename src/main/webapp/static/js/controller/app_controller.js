@@ -102,8 +102,10 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
         $scope.wish = []; 
        
         $scope.addToCart = function(product){
-                
-               var exist=false;
+            
+            alert(product.productName + " " + product.productPrice + " " + product.productQuantity); 
+               
+            var exist=false;
             for(var i=0; i < $scope.carts.length;i++){
                 if($scope.carts[i].productName===product.productName)
                 {
@@ -112,11 +114,13 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 }
             }
             if(!exist){
+                
+                
                   $scope.carts.push({productName: product.productName, 
                                    productPrice:product.productPrice,
                                    productQuantity:product.productQuantity});
                            }
-                           
+              
             };
               
         //To Fetch Product List		 
@@ -149,7 +153,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
            $scope.getProducts();
            /*Add product to cart*/
            $scope.$watch('count',function(newValue,oldValue){
-			$scope.count=$scope.cart.length;
+			$scope.count=$scope.carts.length;
 			console.log($scope.count+"**");
 			
 			
@@ -161,12 +165,14 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			
 		});
                 
-      
-         $scope.removeCartItem = function(product){
-            var index = $scope.cart.indexOf(product);
-            $scope.cart.splice(index, 1);
-             
-        } ;
+       /* removing Item*/
+      $scope.removecart = function(cart){
+            if(cart){
+            $scope.carts.splice($scope.carts.indexOf(cart), 1);
+            $scope.total -= cart.productPrice;
+             $scope.count =$scope.count - 1;
+            }
+	};
             /*Adding Quantity*/
         $scope.addquantity = function(product){
             var exist=false;
@@ -192,24 +198,23 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
             }                      
 	};
 
-//          $scope.getCartTotal = function(){
-//                var total = 0;
-//                for(var i = 0; i < $scope.cart.length; i++){
-//                    var cartItem = $scope.cart[i];
-//                    total += (cartItem.price);
-//                }
-//                return total;
-//            };
-//
-		$scope.getCartTotal = function () {
-			var total = 0;
-			$scope.cart.forEach(function (product) {
-				total += product.productPrice * product.quantity;
-			});
-			return total;
-		};
+        $scope.total = 0;
+	   
+                
+            $scope.setTotals = function(){
+               
+                angular.forEach($scope.carts,function(cart)
+                {
+                    total+=cart.productQuantity * cart.productPrice;
+                });
+                return total;
+		/*if(cart){
+                    $scope.total += cart.productPrice;
+                   
+		}*/
+	} ;    
 	
-        }
+    }
 	
 ]);
 angular.module('myApp').controller('adminctrl',["$scope", "httpService","$location","$window",function($scope,httpService,$location,$window){
