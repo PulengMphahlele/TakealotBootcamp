@@ -40,15 +40,18 @@ public class Product {
 	@Column(name="productPrice")
 	private float productPrice;
         
+        @Column(name="productQuantity")
+	private int productQuantity;
   
 
      public Product(){};
     
-    public Product(int productId, String productName, float productPrice, byte[] productImage) {
+    public Product(int productId, String productName, float productPrice, byte[] productImage, int productQuantity) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productImage = productImage;
+        this.productQuantity = productQuantity;
       
     }
         
@@ -84,10 +87,17 @@ public class Product {
 	public void setProductPrice(float productPrice) {
 		this.productPrice = productPrice;
 	}
+        	public int getProductQuantity() {
+		return productQuantity;
+	}
+
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName="
-                            + productName + ", productPrice=" + productPrice + "]";
+                            + productName + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity + "]";
 	}
 	
 	

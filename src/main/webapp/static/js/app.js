@@ -30,12 +30,12 @@ myApp.config(function($routeProvider,$httpProvider,$locationProvider){
 	}).when("/addToCart",{
 	
 		templateUrl:"view/addToCart.html",
-		controller:"cartctrl"
+		controller:"appctrl"
                 
 	}).when("/cart",{
 	
 		templateUrl:"view/cart.html",
-		controller:"cartctrl"
+		controller:"appctrl"
                 
 	}).when("/toLogin",{
 	

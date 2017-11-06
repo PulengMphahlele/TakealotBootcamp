@@ -159,7 +159,7 @@
         <div class="row">
             
          <div class="container" >
-           <!-- <form>
+           <!-- 
                 <div id = "bg-background" class = "col-md-3">
                     <h4>PRODUCTS<h4>
                     <hr style = "border-top:1px groovy #ccc;">
@@ -173,9 +173,9 @@
                         </div>
                 </div>
            
-                </div> 
-            </form>-->
+                </div> -->
             
+ <form>           
             <table class="table" >
                     <thead>
                         <tr>
@@ -188,21 +188,27 @@
                         </tr>
                     </thead>
                     <tbody data-ng-init ="getProducts()">
-                      <tr  data-ng-repeat="product in productList">
+                      <tr class="info"  data-ng-repeat="product in productList">
                         <!--<td>{{item.productImage}}</td>--> 
                         <td>{{product.productName}}</td>
                         <td>R{{product.productPrice}}</td>
-                        <td> <div class="col-sm-3">  <input type="number" class="form-control" id="quantity" ng-model="product.quantity"></div></td>
-                       
+                        <td>R{{product.productQuantity}}</td>                     
                         <td>
+                             <button type = "button" ng-click="addquantity(product)">
+                                    <span class = "glyphicon glyphicon-plus">
+                                     </span>
+                                </button>
+                                <button type = "button" ng-click="removequantity(product)">
+                                    <span class = "glyphicon glyphicon-minus">
+                                     </span>
+                                </button>
                             <button type="button" ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
                             <button type="button" ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
                         </td>
                       </tr>
                     </tbody>
                 </table>
--->
-         
+         </form>
             </div>
         </div>
 	<a href="#" style="text-align:center; margin-top:10px;"><p>Switch to Mobile</p></a>

@@ -33,6 +33,7 @@ public class ProdController {
 			prod.setProductImage(product.getProductImage());
 			prod.setProductName(product.getProductName());
 			prod.setProductPrice(product.getProductPrice());
+                        prod.setProductQuantity(product.getProductQuantity());
          
 		System.out.println(prod);
                 

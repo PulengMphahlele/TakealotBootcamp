@@ -6,7 +6,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 	 $scope.validateuser=function(){
 		var emailAddress=$scope.emailAddress;
 		var password=$scope.password;
-	var formdata={
+	var formdata1={
 				emailAddress:emailAddress,
 				password:password
 				
@@ -14,7 +14,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 		var details={
 				
 				getUrl:"rest/isvalid",
-				getFormData:formdata
+				getFormData:formdata1
 				
 		};
 		
@@ -42,7 +42,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			
 			
 		});
-		/*To add the article*/
+		/*To add the User*/
 		
 		$scope.createUser = function(){
          
@@ -90,12 +90,6 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 				 $location.path('/newUser');
 			
                              };
-				 
-                        $scope.userCart=function(){
-                                $location.path('/userCart');
-
-                             };
-                             
                
 		
                             /*Go to Home*/
@@ -104,23 +98,23 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 
                             };
                             
-        $scope.cart = []; 
+        $scope.carts = []; 
         $scope.wish = []; 
        
         $scope.addToCart = function(product){
                 
                var exist=false;
-            for(var i=0; i < $scope.cart.length;i++){
-                if($scope.cart[i].productName===product.productName)
+            for(var i=0; i < $scope.carts.length;i++){
+                if($scope.carts[i].productName===product.productName)
                 {
                    exist=true; 
                     
                 }
             }
             if(!exist){
-                  $scope.cart.push({productName: product.productName, 
+                  $scope.carts.push({productName: product.productName, 
                                    productPrice:product.productPrice,
-                                   productQuantity:product.quantity});
+                                   productQuantity:product.productQuantity});
                            }
                            
             };
@@ -173,6 +167,30 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
             $scope.cart.splice(index, 1);
              
         } ;
+            /*Adding Quantity*/
+        $scope.addquantity = function(product){
+            var exist=false;
+            for(var i=0; i < $scope.carts.length;i++){
+                if($scope.carts[i].productName===product.productName)                {                   
+                    $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)+1;
+                   
+                         exist=true;
+                }
+            }                      
+	};
+        
+        /*Removing Quantity*/
+        $scope.removequantity = function(product){
+            var exist=false;
+            for(var i=0; i < $scope.carts.length;i++){
+                if($scope.carts[i].productName===product.productName)
+                {      if($scope.carts[i].productQuantity>0){             
+                    $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)-1;
+                         exist=true;
+                     };
+                }
+            }                      
+	};
 
 //          $scope.getCartTotal = function(){
 //                var total = 0;
@@ -258,12 +276,14 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
 			var productName=$scope.productName;
 			var productImage=$scope.productImage;
                         var productPrice=$scope.productPrice;
+                        var productQuantity=$scope.productQuantity;
 			
 		var formdata={
 				"productId":productId,
                                 "productName":productName,
 				"productImage":productImage,
-                                "productPrice":productPrice
+                                "productPrice":productPrice,
+                                "productQuantity":productQuantity
 				
 						
 			};

@@ -171,18 +171,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="product in cart">
+                                <tr ng-repeat="cart in carts">
                                     <td>{{$index + 1}}</td>
-                                    <td>{{product.productName}}</td>
-                                    <td>{{product.quantity}}</td>
-                                    <td>R{{product.productPrice | currency}}</td>
-                                    <td ng-init = "$parent.total = $parent.total + (product.productPrice * item.quantity)">R{{product.productPrice * product.quantity | number:2}}</td>
+                                    <td>{{cart.productName}}</td>
+                                    <td>{{cart.productQuantity}}</td>
+                                    <td>R{{cart.productPrice | currency}}</td>
+                                    <td ng-init = "$parent.total = $parent.total + (cart.productPrice * cart.quantity)">R{{cart.productPrice * cart.quantity | currency}}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <p style = "font-weight: bold;">
                             <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%;">Subtotal</span>
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: right;">R{{total | number:2}}</span>
+                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: right;">R{{total | currency}}</span>
                         </p>
                     </div>
                 </div>

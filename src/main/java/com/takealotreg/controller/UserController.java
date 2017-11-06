@@ -101,8 +101,8 @@ public class UserController {
 		return prodList;
 	}
 	
-	@RequestMapping(value = "/getProduct", method = RequestMethod.POST)
-	public Cart getArticleDetail(@RequestBody Cart prod){
+	@RequestMapping(value = "/getProd", method = RequestMethod.POST)
+	public Cart getCartDetail(@RequestBody Cart prod){
 	Cart artcl=new Cart();
 
 	artcl=ser.getProduct(prod.getProductId());
