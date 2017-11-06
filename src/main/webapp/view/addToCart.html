@@ -19,7 +19,7 @@
     <script src="./static/js/angular-route.js"></script>
     <script src="./static/js/angular.min.js"></script>
   </head>
-  <body ng-app="myApp" ng-controller="cartctrl">
+  <body ng-app="myApp" ng-controller="appctrl">
   <!--Navbar-->
   <nav class="navbar navbar-white navbar-top" id="my-navbar">
 	<div class="container" style="margin-right:50px; width: 1000px;">
@@ -159,26 +159,27 @@
         <div class="row">
             
          <div class="container" >
-            <form>
+           <!-- <form>
                 <div id = "bg-background" class = "col-md-3">
                     <h4>PRODUCTS<h4>
                     <hr style = "border-top:1px groovy #ccc;">
                     <div id = "product">
                         <div id = "p_list" ng-repeat = "product in productList ">
                             <h3>{{product.productName}}</h3>
-                            <!--<center><img ng-src = "{{product.productImage}}"/></center>-->
+                            <!--<center><img ng-src = "{{product.productImage}}"/></center>->
                             <div><label>Price: R{{product.productPrice}}</label></div>
                              <input type="submit"  ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right value="Add To Cart"/> 
                             <input type="submit"  ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right value="Add To Wish List"/>
                         </div>
                 </div>
-            </form>
-         </div>
+           
+                </div> 
+            </form>-->
             
-            <!--<table class="table" >
+            <table class="table" >
                     <thead>
                         <tr>
-                           <!--<th>Product Image</th>->
+                           <!--<th>Product Image</th>-->
                             <th>Products</th>
                             <th>Price</th>
                              <th >Quantity</th>
@@ -188,7 +189,7 @@
                     </thead>
                     <tbody data-ng-init ="getProducts()">
                       <tr  data-ng-repeat="product in productList">
-                        <!--<td>{{item.productImage}}</td>-> 
+                        <!--<td>{{item.productImage}}</td>--> 
                         <td>{{product.productName}}</td>
                         <td>R{{product.productPrice}}</td>
                         <td> <div class="col-sm-3">  <input type="number" class="form-control" id="quantity" ng-model="product.quantity"></div></td>

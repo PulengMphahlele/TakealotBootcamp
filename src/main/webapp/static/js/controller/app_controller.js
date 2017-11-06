@@ -103,7 +103,93 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                                     $location.path('/home');
 
                             };
-		 
+                            
+        $scope.cart = []; 
+        $scope.wish = []; 
+       
+        $scope.addToCart = function(product){
+                
+               var exist=false;
+            for(var i=0; i < $scope.cart.length;i++){
+                if($scope.cart[i].productName===product.productName)
+                {
+                   exist=true; 
+                    
+                }
+            }
+            if(!exist){
+                  $scope.cart.push({productName: product.productName, 
+                                   productPrice:product.productPrice,
+                                   productQuantity:product.quantity});
+                           }
+                           
+            };
+              
+        //To Fetch Product List		 
+        $scope.getProducts = function(){
+            /*var formdata={
+                            "productId":$window.localStorage.getItem("productId")
+                    };*/
+            var details={
+
+                            getUrl:"rest/getAllProducts"
+                            /*getFormData:formdata*/
+
+            };
+
+                httpService.getData(details).then(successcart, cartfailure);
+           };
+
+           var successcart=function successCallback(data) {
+
+
+            $scope.productList=data;
+
+           };
+
+           var cartfailure=function errorCallback(reason) {
+                   alert('Not Able to Fetch Product');
+           };
+
+
+           $scope.getProducts();
+           /*Add product to cart*/
+           $scope.$watch('count',function(newValue,oldValue){
+			$scope.count=$scope.cart.length;
+			console.log($scope.count+"**");
+			
+			
+		});
+           $scope.$watch('count1',function(newValue,oldValue){
+			$scope.count1=$scope.wish.length;
+			console.log($scope.count1+"**");
+			
+			
+		});
+                
+      
+         $scope.removeCartItem = function(product){
+            var index = $scope.cart.indexOf(product);
+            $scope.cart.splice(index, 1);
+             
+        } ;
+
+//          $scope.getCartTotal = function(){
+//                var total = 0;
+//                for(var i = 0; i < $scope.cart.length; i++){
+//                    var cartItem = $scope.cart[i];
+//                    total += (cartItem.price);
+//                }
+//                return total;
+//            };
+//
+		$scope.getCartTotal = function () {
+			var total = 0;
+			$scope.cart.forEach(function (product) {
+				total += product.productPrice * product.quantity;
+			});
+			return total;
+		};
 	
         }
 	
@@ -230,96 +316,3 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
 //    };
 //}]);
 
-angular.module('myApp').controller('cartctrl',["$scope", "httpService","$location","$window",function($scope,httpService,$location,$window){
-	
-       $scope.cart = []; 
-       $scope.wish = []; 
-       
-        $scope.addToCart = function(product){
-                
-           var found = false;
-            $scope.cart.forEach(function (item) {
-                    if (item.id === product.productId) {
-                            item.quantity++;
-                            found = true;
-                    }
-            });
-            if (!found) {
-                    $scope.cart.push(angular.extend({quantity: 1}, product));
-            }
-            alert('Cart updated');
-        };
-            
-        //To Fetch Product List		 
-        $scope.getProducts = function(){
-            /*var formdata={
-                            "productId":$window.localStorage.getItem("productId")
-                    };*/
-            var details={
-
-                            getUrl:"rest/getAllProducts",
-                            /*getFormData:formdata*/
-
-            };
-
-                httpService.getData(details).then(successart, artfailure);
-           };
-
-           var successart=function successCallback(data) {
-
-
-            $scope.productList=data;
-
-           };
-
-           var artfailure=function errorCallback(reason) {
-                   alert('Not Able to Fetch Product');
-           };
-
-
-           $scope.getProducts();
-           /*Add product to cart*/
-           $scope.$watch('count',function(newValue,oldValue){
-			$scope.count=$scope.cart.length;
-			console.log($scope.count+"**");
-			
-			
-		});
-           $scope.$watch('count1',function(newValue,oldValue){
-			$scope.count1=$scope.wish.length;
-			console.log($scope.count1+"**");
-			
-			
-		});
-                
-      
-         $scope.removeCartItem = function(product){
-            var index = $scope.cart.indexOf(product);
-            $scope.cart.splice(index, 1);
-             
-        } ;
-
-//          $scope.getCartTotal = function(){
-//                var total = 0;
-//                for(var i = 0; i < $scope.cart.length; i++){
-//                    var cartItem = $scope.cart[i];
-//                    total += (cartItem.price);
-//                }
-//                return total;
-//            };
-//
-		$scope.getCartTotal = function () {
-			var total = 0;
-			$scope.cart.forEach(function (product) {
-				total += product.productPrice * product.quantity;
-			});
-			return total;
-		};
-     
-      /*Go to Home*/
-      $scope.goToHome=function(){
-              $location.path('/home');
-
-      };
-
-}]);

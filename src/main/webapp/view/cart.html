@@ -19,7 +19,7 @@
     <script src="./static/js/angular-route.js"></script>
     <script src="./static/js/angular.min.js"></script>
   </head>
-  <body ng-app="myApp">
+  <body ng-app="myApp" ng-controller="appctrl">
   <!--Navbar-->
   <nav class="navbar navbar-white navbar-top" id="my-navbar">
 	<div class="container" style="margin-right:50px; width: 1000px;">
@@ -175,7 +175,7 @@
                                     <td>{{$index + 1}}</td>
                                     <td>{{product.productName}}</td>
                                     <td>{{product.quantity}}</td>
-                                    <td>R{{product.productPrice | number:2}}</td>
+                                    <td>R{{product.productPrice | currency}}</td>
                                     <td ng-init = "$parent.total = $parent.total + (product.productPrice * item.quantity)">R{{product.productPrice * product.quantity | number:2}}</td>
                                 </tr>
                             </tbody>
