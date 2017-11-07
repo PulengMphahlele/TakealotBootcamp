@@ -11,7 +11,7 @@
     color: white;
     padding: 2px;
     font-size: 15px;
-	font-type: bold;
+    font-type: bold;
     border: none;
     cursor: pointer;
 }
@@ -29,14 +29,14 @@
     display: none;
     position: absolute;
     min-width: 150px;
-	background-color:White;
+    background-color:White;
     z-index: 1;
 }
 .dropdown1-content {
     display: block;
     position: absolute;
     min-width: 152px;
-	background-color:White;
+    background-color:White;
     z-index: 1;
 }
 
@@ -50,7 +50,7 @@
     color: black;
     padding: 2px;
     text-decoration: none;
-	font-size: 10px;
+    font-size: 10px;
     display: block;
 }
 .dropdown-content a:hover {background-color: #DADADA}

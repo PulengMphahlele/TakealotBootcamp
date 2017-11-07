@@ -77,12 +77,15 @@ public class UserController {
 		return null;
 	
 		}
-        @RequestMapping(value = "/addCart", method = RequestMethod.POST)
+      //-------------------Add to cart--------------------------------------------------------
+	
+        @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
 	public Cart isValid(@RequestBody CartForm product){
 		Cart prod=new Cart();
-                prod.setCartId(product.getProductId());
+                prod.setProductId(product.getProductId());
                 prod.setProductName(product.getProductName());
 		prod.setProductPrice(product.getProductPrice());
+                prod.setCartProductQuantity(product.getCartProductQuantity());
 		prod.setUsers(ser.getUserByEmailAddress(product.getEmailAddress()));
 		
 		int res= ser.saveProduct(prod);
@@ -93,7 +96,7 @@ public class UserController {
 	
 		}
 	
-	@RequestMapping(value = "/getAllCart", method = RequestMethod.POST)
+	@RequestMapping(value = "/getCart", method = RequestMethod.POST)
 	public List<Cart> getProduct(@RequestBody User user){
 		List<Cart> prodList=new ArrayList<>();
 

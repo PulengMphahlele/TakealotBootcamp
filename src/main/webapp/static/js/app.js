@@ -32,7 +32,7 @@ myApp.config(function($routeProvider,$httpProvider,$locationProvider){
 		templateUrl:"view/addToCart.html",
 		controller:"appctrl"
                 
-	}).when("/cart",{
+	}).when("/userCart",{
 	
 		templateUrl:"view/cart.html",
 		controller:"appctrl"

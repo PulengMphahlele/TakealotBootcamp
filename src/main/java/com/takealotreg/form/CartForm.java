@@ -13,6 +13,16 @@ public class CartForm {
 	private int productId;
 
 	private String cartProductPrice;
+        
+        private int cartProductQuantity;
+
+        public int getCartProductQuantity() {
+        return cartProductQuantity;
+    }
+
+    public void setCartProductQuantity(int cartProductQuantity) {
+        this.cartProductQuantity = cartProductQuantity;
+    }
 	
 	private String emailAddress;
         
@@ -46,7 +56,7 @@ public class CartForm {
 		return emailAddress;
 	}
 
-	public void setUsername(String emailAddress) {
+	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
 	

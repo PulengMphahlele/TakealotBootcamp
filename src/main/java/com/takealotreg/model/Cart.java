@@ -19,7 +19,6 @@ import javax.persistence.Table;
 public class Cart {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="productId")
 	private int productId;
 	
@@ -30,16 +29,19 @@ public class Cart {
 	@Column(name="cartProductPrice")
 	private String cartProductPrice;
 	
-	
+        @Column(name="cartProductQuantity")
+	private int cartProductQuantity;
+
 	@ManyToOne
-	@JoinColumn(name="userID",nullable=false)
+	@JoinColumn(name="UserEmail",nullable=false)
 	private User users;
+        
 
 	public int getProductId() {
 		return productId;
 	}
 
-	public void setCartId(int productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
@@ -67,6 +69,12 @@ public class Cart {
 	public void setProductPrice(String cartProductPrice) {
 		this.cartProductPrice = cartProductPrice;
 	}
-	
+	  public int getCartProductQuantity() {
+        return cartProductQuantity;
+        }
+
+        public void setCartProductQuantity(int cartProductQuantity) {
+            this.cartProductQuantity = cartProductQuantity;
+        }
 	
 }

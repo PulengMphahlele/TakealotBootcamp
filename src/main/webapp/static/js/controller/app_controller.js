@@ -22,9 +22,11 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 	 };
 		
 		var onSuccessRetrival = function(data) {
-		
-			$window.localStorage.setItem("emailAddress",data.emailAddress);		
-			$location.path('/home');
+                        alert("successfuly logged in")
+			$window.localStorage.setItem("emailAddress",data.emailAddress);	
+                        //$scope.logged=data.username;
+			//console.log($scope.logged);
+			$location.path('/onsuccess');
                        };
                        $scope.toLogin=function(){
                                     $location.path('/toLogin');
@@ -90,8 +92,12 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 				 $location.path('/newUser');
 			
                              };
-               
-		
+                             /*Go  user cart*/
+                        $scope.goToHome=function(){
+                                $location.path('/userCart');
+
+                        };
+
                             /*Go to Home*/
                             $scope.goToHome=function(){
                                     $location.path('/home');
@@ -102,26 +108,58 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
         $scope.wish = []; 
        
         $scope.addToCart = function(product){
-            
-            alert(product.productName + " " + product.productPrice + " " + product.productQuantity); 
-               
-            var exist=false;
-            for(var i=0; i < $scope.carts.length;i++){
-                if($scope.carts[i].productName===product.productName)
-                {
-                   exist=true; 
+           
+//            var exist=false;
+//            for(var i=0; i < $scope.carts.length;i++){
+//                if($scope.carts[i].productName===product.productName)
+//                {
+//                   exist=true; 
+//                    
+//                }
+//            }
+//            if(!exist){
+//                
+//                $scope.addCard = function(product){
+                        var productId=product.productId;
+			var productName=product.productName;
+//			var productImage=product.productImage;
+                        var productPrice=product.productPrice;
+                        var productQuantity=product.productQuantity;
+                
+                var fData ={  "productId": productId, 
+                            "productName": productName, 
+                            "productPrice":productPrice,
+                            "productQuantity":productQuantity,
+                            "emailAddress":$window.localStorage.getItem("emailAddress")
+                    };
                     
-                }
-            }
-            if(!exist){
-                
-                
-                  $scope.carts.push({productName: product.productName, 
-                                   productPrice:product.productPrice,
-                                   productQuantity:product.productQuantity});
-                           }
+                var detail={
+					
+					getUrl:"rest/addToCart",
+					getFormData:fData
+					
+			};
+                   alert(productName + " " + productPrice + " " + productQuantity + " " + productId + " " + emailAddress);
+                 httpService.getDataByForm(detail).then(onSuccess, onError);
+		 };
+		 var onError = function(reason) {
+				alert("Error adding Item");
+				
+			};
+			
+			var onSuccess = function(data) {
+			alert("Cart Updated");
+			$location.path('/userCart');
+			
+		};	
+
+//                  $scope.carts.push({productName: product.productName, 
+//                                   productPrice:product.productPrice,
+//                                   productQuantity:product.productQuantity});
+//                           }
+//                      
               
-            };
+//            };
               
         //To Fetch Product List		 
         $scope.getProducts = function(){
@@ -135,17 +173,17 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 
             };
 
-                httpService.getData(details).then(successcart, cartfailure);
+                httpService.getData(details).then(successProd, prodFailure);
            };
 
-           var successcart=function successCallback(data) {
+           var successProd=function successCallback(data) {
 
 
             $scope.productList=data;
 
            };
 
-           var cartfailure=function errorCallback(reason) {
+           var prodFailure=function errorCallback(reason) {
                    alert('Not Able to Fetch Product');
            };
 
