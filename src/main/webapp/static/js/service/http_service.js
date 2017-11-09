@@ -17,9 +17,9 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 		 var getDataByForm = function(details) {
 			return $http.post(details.getUrl, details.getFormData).then(
 		
-					function(response) {
-						return response.data;
-					});
+                            function(response) {
+                                    return response.data;
+                            });
 		}
 		var getData = function(details) {
 			return $http.post(details.getUrl).then(

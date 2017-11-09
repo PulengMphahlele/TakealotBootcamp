@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp').controller('appctrl',["$scope", "httpService","$location","$window",function($scope,httpService,$location,$window){
+angular.module('myApp').controller('appctrl',["$scope", "httpService","$location","$window", function($scope,httpService,$location,$window){
 	
 	/*To Validate the User*/
 	 $scope.validateuser=function(){
@@ -29,18 +29,18 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			$location.path('/onsuccess');
                        };
                        $scope.toLogin=function(){
-                                    $location.path('/toLogin');
+                       $location.path('/toLogin');
 
                                     };
 		var onError = function(reason) {
 			alert("Invalid Login");
 			
 		};
-		
-		/*To display Logged in User*/
-		$scope.$watch('logged',function(newValue,oldValue){
-			$scope.logged=$window.localStorage.getItem("emailAddress");
-			console.log($scope.logged+"**");
+
+                    /*To display Logged in User*/
+                    $scope.$watch('logged',function(newValue,oldValue){
+                    $scope.logged=$window.localStorage.getItem("emailAddress");
+                    console.log($scope.logged+"**");
 			
 			
 		});
@@ -93,10 +93,21 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			
                              };
                              /*Go  user cart*/
-                        $scope.goToHome=function(){
-                                $location.path('/userCart');
-
-                        };
+                        $scope.userCart=function(){
+                              /* Load application data */
+                                $scope.load = function () {
+                                  var carts = angular.fromJson( localStorage.getItem( 'carts' ) );
+                                  if ( carts ) {
+                                    $scope.tasks = [];
+                                    for (var i = 0; i < carts.length; i++) {
+                                      if (carts[i].title) {
+                                        $scope.carts.push(carts[i]);
+                                      }
+                                    }
+                                  }
+                                };
+                                  $location.path('/userCart');
+                               };
 
                             /*Go to Home*/
                             $scope.goToHome=function(){
@@ -109,57 +120,35 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
        
         $scope.addToCart = function(product){
            
-//            var exist=false;
-//            for(var i=0; i < $scope.carts.length;i++){
-//                if($scope.carts[i].productName===product.productName)
-//                {
-//                   exist=true; 
-//                    
-//                }
-//            }
-//            if(!exist){
-//                
-//                $scope.addCard = function(product){
-                        var productId=product.productId;
-			var productName=product.productName;
-//			var productImage=product.productImage;
-                        var productPrice=product.productPrice;
-                        var productQuantity=product.productQuantity;
+            var exist=false;
+            for(var i=0; i < $scope.carts.length;i++){
+                if($scope.carts[i].productName===product.productName)
+                {
+                   exist=true; 
+                                    
+                    $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)+1;
+                    $scope.total += product.productPrice;
+                    $scope.count +=1;
+                    return count;
+                }
+            }
+            if(!exist){
                 
-                var fData ={  "productId": productId, 
-                            "productName": productName, 
-                            "productPrice":productPrice,
-                            "productQuantity":productQuantity,
-                            "emailAddress":$window.localStorage.getItem("emailAddress")
-                    };
-                    
-                var detail={
-					
-					getUrl:"rest/addToCart",
-					getFormData:fData
-					
-			};
-                   alert(productName + " " + productPrice + " " + productQuantity + " " + productId + " " + emailAddress);
-                 httpService.getDataByForm(detail).then(onSuccess, onError);
-		 };
-		 var onError = function(reason) {
-				alert("Error adding Item");
-				
-			};
-			
-			var onSuccess = function(data) {
-			alert("Cart Updated");
-			$location.path('/userCart');
-			
-		};	
-
-//                  $scope.carts.push({productName: product.productName, 
-//                                   productPrice:product.productPrice,
-//                                   productQuantity:product.productQuantity});
-//                           }
-//                      
-              
-//            };
+ 
+                  $scope.carts.push({productName: product.productName, 
+                                   productPrice:product.productPrice,
+                                   productQuantity:product.productQuantity});
+                           }
+                            /* Save application data */
+                 $scope.save = function () {
+                   localStorage.setItem( 'carts', angular.toJson( $scope.carts ) );
+                 };   
+                      $scope.total += product.productPrice;
+                      $scope.count +=1;
+                      
+            };
+                  
+            
               
         //To Fetch Product List		 
         $scope.getProducts = function(){
@@ -190,12 +179,13 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 
            $scope.getProducts();
            /*Add product to cart*/
-           $scope.$watch('count',function(newValue,oldValue){
-			$scope.count=$scope.carts.length;
-			console.log($scope.count+"**");
-			
-			
-		});
+//           $scope.$watch('count',function(newValue,oldValue){
+//			$scope.count=$scope.carts.length;
+//			console.log($scope.count+"**");
+//			
+//			
+//		});
+            $scope.count=0;
            $scope.$watch('count1',function(newValue,oldValue){
 			$scope.count1=$scope.wish.length;
 			console.log($scope.count1+"**");
@@ -209,6 +199,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
             $scope.carts.splice($scope.carts.indexOf(cart), 1);
             $scope.total -= cart.productPrice;
              $scope.count =$scope.count - 1;
+             
             }
 	};
             /*Adding Quantity*/
@@ -217,7 +208,9 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
             for(var i=0; i < $scope.carts.length;i++){
                 if($scope.carts[i].productName===product.productName)                {                   
                     $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)+1;
-                   
+                    $scope.total += product.productPrice;
+                    $scope.count +=1;
+                    return count;
                          exist=true;
                 }
             }                      
@@ -230,6 +223,9 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 if($scope.carts[i].productName===product.productName)
                 {      if($scope.carts[i].productQuantity>0){             
                     $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)-1;
+                    $scope.total -= product.productPrice;
+                    $scope.count -=1;
+                    return count;
                          exist=true;
                      };
                 }
@@ -243,7 +239,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                
                 angular.forEach($scope.carts,function(cart)
                 {
-                    total+=cart.productQuantity * cart.productPrice;
+                    total += this.this.toNumber(cart.productQuantity * cart.productPrice);
                 });
                 return total;
 		/*if(cart){
@@ -358,24 +354,5 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
    
      }
 ]);
-// .directive('bindFile', [function () {
-//    return {
-//        require: "ngModel",
-//        restrict: 'A',
-//        link: function ($scope, el, attrs, ngModel) {
-//            el.bind('change', function (event) {
-//                ngModel.$setViewValue(event.target.files[0]);
-//                $scope.$apply();
-//            });
-//            
-//            $scope.$watch(function () {
-//                return ngModel.$viewValue;
-//            }, function (value) {
-//                if (!value) {
-//                    el.val("");
-//                }
-//            });
-//        }
-//    };
-//}]);
+
 

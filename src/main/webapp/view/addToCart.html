@@ -10,7 +10,7 @@
    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
     <link href="./static/css/custom.css" rel="stylesheet">
     <link href="./static/css/dropdown.css" rel="stylesheet">
-    <link rel="Shortcut Icon" src="./static/icons/favicon.ico" type="image/x-icon">
+    <link rel="Shortcut Icon" href="./static/icons/favicon.ico" type="image/x-icon">
     <link href="./static/css/awesome-fonts.css" rel="stylesheet">
     <script src="./static/js/app.js"></script>
     <script src="./static/js/angularjs-cookies.js"></script>
@@ -171,7 +171,7 @@
                                <th>Price</th>
                                 <th >Quantity</th>
                                <th ></th>
-                               <th ></th>
+                               
                            </tr>
                        </thead>
                        <tbody data-ng-init ="getProducts()">
@@ -179,10 +179,8 @@
                            <!--<td>{{item.productImage}}</td>--> 
                            <td>{{product.productName}}</td>
                            <td>R{{product.productPrice}}</td>
-                           <td> <div class="col-sm-3">  <input type="number" class="form-control" default="{{product.productQuantity}}" id="quantity" ng-model="product.productQuantity"></div></td>
-
                            <td>
-                               <button type = "button" ng-click="removequantity(product)">
+                                <button type = "button" ng-click="removequantity(product)">
                                     <span class = "glyphicon glyphicon-minus">
                                      </span>
                                 </button>
@@ -190,7 +188,9 @@
                                     <span class = "glyphicon glyphicon-plus">
                                      </span>
                                 </button>
+                            </td>
 
+                           <td>
                                <button type="button" ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
                                <button type="button" ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
                            </td>
@@ -200,13 +200,13 @@
             </form>
             </div>
              <div class="row">
-                 <fieldset><legend>Order Items </legend></fieldset>
+                 <fieldset><legend>Cart Items </legend></fieldset>
                     <div>
                        
                         <table class = "table table-condensed table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th><th>Item name</th><th>Quantity</th><th>Unit Cost(R)</th><th>Tot Cost(R)</th><th></th>
+                                    <th>#</th><th>Item name</th><th>Quantity</th><th>Unit Cost(R)</th><th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -217,7 +217,7 @@
                                 
                                     </td>
                                     <td>R {{cart.productPrice}}</td>
-                                    <td >R {{total}}</td>
+                                    
                                     <td >
                                         <button type = "button" ng-click = "removecart(cart)" class = "btn btn-danger">
                                            <span class = "glyphicon glyphicon-remove"></span>
@@ -228,12 +228,14 @@
                         </table>
                         <p style = "font-weight: bold;">
                             <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%;">Subtotal</span>
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: left;">R{{subTotal}}</span>
+                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: left;">R{{total}}</span>
+                             <span class = "pull-right" style = "width: 100%; text-align: right;"><button type="button" ng-click="order(cart)" class="btn btn-sm btn-info " float-right>Proceed To CheckOut</button> </span>
                         </p>
                     </div>
              </div>
           </div>
         </div>
+        
 	<a href="#" style="text-align:center; margin-top:10px;"><p>Switch to Mobile</p></a>
 	 <div class="jumbotron" style="margin-top:10px; margin-bottom:0px; background-color:#F5F5F5; padding-bottom:10px; ">
 	<div class="container">

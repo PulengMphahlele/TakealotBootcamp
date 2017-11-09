@@ -33,7 +33,7 @@
 			<li><a href="#contact">Help</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a>Hi {{logged}}</a></li>
+				<li><a>Hi!</a></li>
 				<li><a href="home.html">Logout</a></li>
 				<li> 
 				<div class="dropdown">
@@ -161,42 +161,116 @@
 	
         <div class="container">
 
-           <div class = "col-md-5">
-                    <fieldset><legend>Order Items </legend></fieldset>
-                    <div>
-                       
-                        <table class = "table table-condensed table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th><th>Item name</th><th>Quantity</th><th>Unit Cost(R)</th><th>Tot Cost(R)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="cart in carts">
-                                    <td>{{$index + 1}}</td>
-                                    <td>{{cart.productName}}</td>
-                                    <td>{{cart.productQuantity}}
-                                        <button type = "button" ng-click="addcart(product)">
-                                    <span class = "glyphicon glyphicon-shopping-cart">
-                                     </span> Add to cart
-                                </button>
-                                <button type = "button" ng-click="addquantity(product)">
-                                    <span class = "glyphicon glyphicon-plus">
-                                     </span>
-                                </button>
-                                    </td>
-                                    <td>R{{cart.productPrice | currency}}</td>
-                                    <td ng-init = "$parent.total = $parent.total + (cart.productPrice * cart.quantity)">R{{cart.productPrice * cart.quantity | currency}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style = "font-weight: bold;">
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%;">Subtotal</span>
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: right;">R{{total | currency}}</span>
-                        </p>
-                    </div>
-                </div>
-        </div>
+           <div class="col-md-8">
+				<div class="panel-heading">
+					<div class="panel-title text-left">
+                                            <h1 class="title"><a> Placing Order </a></h1>
+						<hr />
+					</div>
+				</div> 
+				<div class="main-login main-center"  >
+                                    <div ng-controller="appctrl" >
+                                        
+                                           <table class = "table table-condensed table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th><th>Item name</th><th>Quantity</th><th>Unit Cost(R)</th><th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="cart in carts">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{cart.productName}}</td>
+                                                        <td>{{cart.productQuantity}}
+
+                                                        </td>
+                                                        <td>R {{cart.productPrice}}</td>
+
+                                                        <td >
+                                                            <button type = "button" ng-click = "removecart(cart)" class = "btn btn-danger">
+                                                               <span class = "glyphicon glyphicon-remove"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p style = "font-weight: bold;">
+                                                <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%;">Total Cost</span>
+                                                <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: left;">R{{total}}</span>
+                                               
+                                            </p>
+                                        </div>
+                                        
+                                                  <form name="order" id="order" class="form-horizontal" ng-submit="placeOrder()">
+    
+                                                <div class="form-group">
+                                                 
+                                                    <input type="hidden" class="form-control" id="orderNumber" ng-model="orderNumber" >
+                                                   
+                                                </div>
+                                                      <p>Payment Info</p>
+                                                <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="bankName">Bank Name:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="bankName" ng-model="Bank Name" required>
+                                                    <span ng-show="order.bankName.$touched && order.bankName.$invalid">Bank Name is required.</span>
+                                                  </div>
+                                                </div>
+                                               <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="accountNo">Account Number:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="accountNo" ng-model="accountNo" required>
+                                                    <span ng-show="order.accountNo.$touched && order.accountNo.$invalid">Account number is required.</span>
+                                                  </div>
+                                                </div>
+												<div class="form-group">
+                                                  <label class="control-label col-sm-2" for="atmPin">ATM Pin:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="password" class="form-control" id="atmPin" ng-model="atmPin" required>
+                                                    <!--<span ng-show="order.atmPin.$touched && order.atmPin.$invalid">ATM Pin is required.</span>-->
+                                                  </div>
+                                                </div>
+
+                                                      <p>Delivery Info</p>
+                                                      
+                                                <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="sAdddress">Street Address:</label>
+                                                  <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="sAdddress" ng-model="sAdddress" required>
+                                                    <!--<span ng-show="order.sAdddress.$touched && order.sAdddress.$invalid">Address is required.</span>-->
+                                                  </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="city">City:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="city" ng-model="city">
+                                                  </div>
+                                                </div>
+                                               <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="phone">Mobile Number:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="phone" ng-model="phone" required>
+                                                    <!--<span ng-show="order.phone.$touched && order.phone.$invalid">Mobile number is required.</span>-->
+                                                  </div>
+                                                </div>
+                                              
+                                               <div class="form-group">
+                                                  <label class="control-label col-sm-2" for="pCode">Postal Code:</label>
+                                                  <div class="col-sm-10"> 
+                                                    <input type="text" class="form-control" id="pCode" ng-model="pCode">
+                                                  </div>
+                                                </div>
+                                                <div class="form-group"> 
+                                                  <div class="col-sm-offset-2 col-sm-10">
+                                                    <input type="submit" class="btn btn-info btn-md" value="Proceed"/>
+                                                  </div>
+                                                </div>
+                                        </form>
+                                    </div>
+				</div> 
+			</div>
+                
+       
 	<a href="#" style="text-align:center; margin-top:10px;"><p>Switch to Mobile</p></a>
 	 <!-- Jumbotron-->
   

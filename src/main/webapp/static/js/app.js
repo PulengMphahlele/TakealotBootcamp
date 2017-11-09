@@ -17,6 +17,11 @@ myApp.config(function($routeProvider,$httpProvider,$locationProvider){
 		templateUrl:"view/onsuccess.html",
 		controller:"appctrl"
                 
+	}).when("/orderDetail",{
+	
+		templateUrl:"view/orderDetail.html",
+		controller:"appctrl"
+                
 	}).when("/admin",{
 	
 		templateUrl:"view/loginAdmin.html",
