@@ -17,9 +17,9 @@ myApp.config(function($routeProvider,$httpProvider,$locationProvider){
 		templateUrl:"view/onsuccess.html",
 		controller:"appctrl"
                 
-	}).when("/orderDetail",{
+	}).when("/checkOut",{
 	
-		templateUrl:"view/orderDetail.html",
+		templateUrl:"view/orderDetails.html",
 		controller:"appctrl"
                 
 	}).when("/admin",{

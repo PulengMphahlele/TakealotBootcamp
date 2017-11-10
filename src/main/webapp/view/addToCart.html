@@ -60,8 +60,7 @@
 				</li>
 				<li>
 				<div class="Cart">
-					<button class="list" style="margin-top:10px; border:0px; color: White; background-color: green;">
-					<a href="cart.htm" title="Cart"></a>
+					<button class="list" ng-click="userCart()" title="wishlist" style="margin-top:10px; border:0px; color: White; background-color: green;">
 					<span style="padding:10px;" class="glyphicon glyphicon-shopping-cart"></span>
 					<span>{{count}}</span></button>
 				</div>
@@ -179,6 +178,7 @@
                            <!--<td>{{item.productImage}}</td>--> 
                            <td>{{product.productName}}</td>
                            <td>R{{product.productPrice}}</td>
+                           
                            <td>
                                 <button type = "button" ng-click="removequantity(product)">
                                     <span class = "glyphicon glyphicon-minus">
@@ -200,38 +200,7 @@
             </form>
             </div>
              <div class="row">
-                 <fieldset><legend>Cart Items </legend></fieldset>
-                    <div>
-                       
-                        <table class = "table table-condensed table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th><th>Item name</th><th>Quantity</th><th>Unit Cost(R)</th><th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="cart in carts">
-                                    <td>{{$index + 1}}</td>
-                                    <td>{{cart.productName}}</td>
-                                    <td>{{cart.productQuantity}}
-                                
-                                    </td>
-                                    <td>R {{cart.productPrice}}</td>
-                                    
-                                    <td >
-                                        <button type = "button" ng-click = "removecart(cart)" class = "btn btn-danger">
-                                           <span class = "glyphicon glyphicon-remove"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style = "font-weight: bold;">
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%;">Subtotal</span>
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: left;">R{{total}}</span>
-                             <span class = "pull-right" style = "width: 100%; text-align: right;"><button type="button" ng-click="order(cart)" class="btn btn-sm btn-info " float-right>Proceed To CheckOut</button> </span>
-                        </p>
-                    </div>
+                
              </div>
           </div>
         </div>

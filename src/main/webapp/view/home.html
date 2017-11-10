@@ -44,7 +44,7 @@
 			<li><a href="#contact">Help</a>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a>Hi!</a>
+				<li><a>Hi!{{logged}}</a>
 				<li><a ng-click="toLogin()">Login</a></li>
 				<li><a ng-click="newUser()">Register</a></li>
 				<li> 
@@ -65,14 +65,14 @@
 				<div class="Wish_list">
                                     <button class="list" ng-click="wishList()" title="wishlist" style="margin:10px; border:0px; color: White; background-color: red;">
 					<span style="padding:10px;" class="glyphicon glyphicon-heart"></span>
-					<span>0</span></button>
+					<span>{{count1}}</span></button>
 				</div>
 				</li>
 				<li>
 				<div class="Cart">
-					<button class="list" ng-click="userCart()"title="wishlist" style="margin-top:10px; border:0px; color: White; background-color: green;">
+					<button class="list" ng-click="userCart()" title="wishlist" style="margin-top:10px; border:0px; color: White; background-color: green;">
 					<span style="padding:10px;" class="glyphicon glyphicon-shopping-cart"></span>
-					<span>0</span></button>
+					<span>{{count}}</span></button>
 				</div>
 				</li>
 			</ul>
@@ -112,9 +112,10 @@
 						<a href="#">Luggage & Travel</a>
 						<a href="#">Vouchers</a>
 						<a href="#" style="background-color:#72DB8E; color:white;font-size:18px;">DAILY DEALS</a>
-						
+                                                <a>   <button type="button" ng-click="updateCart()" class="btn btn-sm btn-warning " float-left>View Products</button> </a>
 					</div>
 				</div>
+                            
 			</div>
 			<div class="col-md-3">
 				
@@ -256,6 +257,7 @@
 	
 	
         </div>  <!-- End of row-->
+        
 
 	<a href="#" style="text-align:center; margin-top:10px;"><p>Switch to Mobile</p></a>
 	 <!-- Jumbotron-->
