@@ -114,6 +114,12 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                                     $location.path('/home');
 
                             };
+                            $scope.logOut=function(){
+                                
+                                
+                                    $location.path('/home');
+
+                            };
                            
                             $scope.toLogin=function(){
                                     

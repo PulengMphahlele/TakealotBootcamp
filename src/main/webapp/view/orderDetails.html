@@ -46,7 +46,7 @@
 			<ul class="nav navbar-nav navbar-right">
 			
                                 <li><a>Hi {{logged}}</a>
-				<li><a ng-click="toLogin()">LogOut</a></li>
+				<li><a ng-click="logOut()">LogOut</a></li>
 				<li><a ng-click="newUser()">Register</a></li>
 				<li> 
 				<div class="dropdown" title="Account">
@@ -64,16 +64,18 @@
 				</li>
 				<li>
 				<div class="Wish_list">
-                                    <button class="list" ng-click="userCart()" title="wishlist" style="margin:10px; border:0px; color: White; background-color: red;">
+                              		<button class="list" style="margin:10px; border:0px; color: White; background-color: red;">
+					<a href="wishlist.htm" title="Wish List"></a>
 					<span style="padding:10px;" class="glyphicon glyphicon-heart"></span>
-					<span>0</span></button>
+					<span>{{count1}}</span></button>
 				</div>
 				</li>
 				<li>
 				<div class="Cart">
+					<div class="Cart">
 					<button class="list" ng-click="userCart()" title="wishlist" style="margin-top:10px; border:0px; color: White; background-color: green;">
 					<span style="padding:10px;" class="glyphicon glyphicon-shopping-cart"></span>
-					<span>0</span></button>
+					<span>{{count}}</span></button>
 				</div>
 				</li>
 			</ul>
