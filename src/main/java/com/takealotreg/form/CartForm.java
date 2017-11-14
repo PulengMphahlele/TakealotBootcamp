@@ -7,12 +7,12 @@ package com.takealotreg.form;
 
 public class CartForm {
 	
-
+        private int cartId;
 	private String cartProductName;
 	
 	private int productId;
 
-	private String cartProductPrice;
+	private float cartProductPrice;
         
         private int cartProductQuantity;
 
@@ -43,11 +43,11 @@ public class CartForm {
 		this.cartProductName = cartProductName;
 	}
 
-	public String getProductPrice() {
+	public float getProductPrice() {
 		return cartProductPrice;
 	}
 
-	public void setProductPrice(String cartProductPrice) {
+	public void setProductPrice(float cartProductPrice) {
 		this.cartProductPrice = cartProductPrice;
 	}
 	
@@ -59,6 +59,14 @@ public class CartForm {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+
+        public int getCartId() {
+            return cartId;
+        }
+
+        public void setCartId(int cartId) {
+            this.cartId = cartId;
+        }
 	
 	
 

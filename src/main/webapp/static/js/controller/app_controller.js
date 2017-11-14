@@ -114,7 +114,9 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                                     $location.path('/home');
 
                             };
+                           
                             $scope.toLogin=function(){
+                                    
                                     $location.path('/toLogin');
 
                             };
@@ -147,6 +149,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                     $scope.count +=1;
                      localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
                     return count;
+                    $scope.addCard(carts); 
                 }
             }
             if(!exist){
@@ -164,10 +167,43 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                       localStorage.setItem( 'total', angular.toJson( $scope.total ) );
                       $scope.count +=1;
                     localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
-                      
+                    $scope.addCard(carts); 
             };
                   
-            
+           // Add cart to database
+           
+           $scope.addCard = function(carts){
+			var productId=carts.productId;
+			var productName=carts.productName;
+//                      var productImage=product.productImage;
+                        var productPrice=carts.productPrice;
+                        var productQuantity=carts.productQuantity;
+                
+                var fData ={  "productId": productId, 
+                            "productName": productName, 
+                            "productPrice":productPrice,
+                            "productQuantity":productQuantity,
+                            "emailAddress":$window.localStorage.getItem("emailAddress")
+                    };
+                    
+                var detail={
+					
+					getUrl:"rest/addToCart",
+					getFormData:fData
+					
+				};
+                   alert(productName + " " + productPrice + " " + productQuantity + " " + productId + " " + emailAddress);
+                                 httpService.getDataByForm(detail).then(onSuccess, onError);
+			 };
+			 var onError = function(reason) {
+					alert("Error adding Item");
+					
+				};
+				
+				var onSuccess = function(data) {
+				alert("Cart Updated");
+				
+			};	
               
         //To Fetch Product List		 
         $scope.getProducts = function(){

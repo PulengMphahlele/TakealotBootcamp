@@ -6,9 +6,10 @@
 package com.takealotreg.model;
 
 import javax.persistence.Column;
+//import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,9 +18,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="cart")
 public class Cart {
-	
+
+    	
 	@Id
-	@Column(name="productId")
+	@Column(name="cartId")
+	private int cartId;
+        
+        @Column(name="productId")
 	private int productId;
 	
 	@Column(name="cartProductName")
@@ -27,7 +32,7 @@ public class Cart {
 	
 	
 	@Column(name="cartProductPrice")
-	private String cartProductPrice;
+	private float cartProductPrice;
 	
         @Column(name="cartProductQuantity")
 	private int cartProductQuantity;
@@ -36,7 +41,17 @@ public class Cart {
 	@JoinColumn(name="UserEmail",nullable=false)
 	private User users;
         
+        public Cart(){}
+       
+        
+        public int getCartId() {
+        return cartId;
+        }
 
+        public void setCartId(int cartId) {
+            this.cartId = cartId;
+        }
+        
 	public int getProductId() {
 		return productId;
 	}
@@ -62,11 +77,11 @@ public class Cart {
 		this.users = users;
 	}
 
-	public String getProductPrice() {
+	public float getProductPrice() {
 		return cartProductPrice;
 	}
 
-	public void setProductPrice(String cartProductPrice) {
+	public void setProductPrice(float cartProductPrice) {
 		this.cartProductPrice = cartProductPrice;
 	}
 	  public int getCartProductQuantity() {
@@ -77,4 +92,5 @@ public class Cart {
             this.cartProductQuantity = cartProductQuantity;
         }
 	
+      
 }
