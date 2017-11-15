@@ -23,7 +23,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 		
 		var onSuccessRetrival = function(data) {
                         alert("successfuly logged in");
-			$window.localStorage.setItem("emailAddress",data.emailAddress);
+			$window.sessionStorage.setItem("emailAddress",data.emailAddress);
                         //$scope.logged=data.username;
 			//console.log($scope.logged);
 			$location.path('/goToHome');
@@ -39,7 +39,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 
                     /*To display Logged in User*/
                     $scope.$watch('logged',function(newValue,oldValue){
-                    $scope.logged=$window.localStorage.getItem("emailAddress");
+                    $scope.logged=$window.sessionStorage.getItem("emailAddress");
                     console.log($scope.logged+"**");
 			
 			
@@ -92,12 +92,12 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 				 $location.path('/newUser');
 			
                              };
-                         $scope.carts = (localStorage.getItem('carts')!==null) ? JSON.parse(localStorage.getItem('carts')) : [];
+                         $scope.carts = (sessionStorage.getItem('carts')!==null) ? JSON.parse(sessionStorage.getItem('carts')) : [];
                              /*Go  user cart*/
                         
                               /* Load application data */
                                 $scope.userCart=function(){
-                                  var carts = angular.fromJson( localStorage.getItem( 'carts' ) );
+                                  var carts = angular.fromJson( sessionStorage.getItem( 'carts' ) );
                                   if ( carts ) {
                                     $scope.carts = [];
                                     for (var i = 0; i < carts.length; i++) {
@@ -150,10 +150,10 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                                     
                     $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)+1;
                     $scope.total += product.productPrice;
-                    localStorage.setItem( 'total', angular.toJson( $scope.total ) );
-                    localStorage.setItem( 'carts', angular.toJson( $scope.carts ) );
+                    sessionStorage.setItem( 'total', angular.toJson( $scope.total ) );
+                    sessionStorage.setItem( 'carts', angular.toJson( $scope.carts ) );
                     $scope.count +=1;
-                     localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
+                     sessionStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
                     return count;
                     $scope.addCard(carts); 
                 }
@@ -167,12 +167,12 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                            }
                             /* Save application data */
                 
-                   localStorage.setItem( 'carts', angular.toJson( $scope.carts ) );
+                   sessionStorage.setItem( 'carts', angular.toJson( $scope.carts ) );
                    
                       $scope.total += product.productPrice;
-                      localStorage.setItem( 'total', angular.toJson( $scope.total ) );
+                      sessionStorage.setItem( 'total', angular.toJson( $scope.total ) );
                       $scope.count +=1;
-                    localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
+                    sessionStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
                     $scope.addCard(carts); 
             };
                   
@@ -189,7 +189,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                             "productName": productName, 
                             "productPrice":productPrice,
                             "productQuantity":productQuantity,
-                            "emailAddress":$window.localStorage.getItem("emailAddress")
+                            "emailAddress":$window.sessionStorage.getItem("emailAddress")
                     };
                     
                 var detail={
@@ -214,7 +214,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
         //To Fetch Product List		 
         $scope.getProducts = function(){
             /*var formdata={
-                            "productId":$window.localStorage.getItem("productId")
+                            "productId":$window.sessionStorage.getItem("productId")
                     };*/
             var details={
 
@@ -246,7 +246,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 //			
 //			
 //		});
-             $scope.count = (localStorage.getItem('count')!==null) ? JSON.parse(localStorage.getItem('count')) : "0";
+             $scope.count = (sessionStorage.getItem('count')!==null) ? JSON.parse(sessionStorage.getItem('count')) : "0";
            $scope.$watch('count1',function(newValue,oldValue){
 			$scope.count1=$scope.wish.length;
 			console.log($scope.count1+"**");
@@ -258,11 +258,11 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
       $scope.removecart = function(cart){
             if(cart){
             $scope.carts.splice($scope.carts.indexOf(cart), 1);
-            localStorage.setItem('carts', JSON.stringify($scope.carts));
+            sessionStorage.setItem('carts', JSON.stringify($scope.carts));
             $scope.total -= (cart.productPrice * cart.productQuantity);
             $scope.count =$scope.count - cart.productQuantity;
-            localStorage.setItem( 'count', angular.toJson( $scope.count ) );
-            localStorage.setItem( 'total', angular.toJson( $scope.total ) );
+            sessionStorage.setItem( 'count', angular.toJson( $scope.count ) );
+            sessionStorage.setItem( 'total', angular.toJson( $scope.total ) );
             }
 	};
             /*Adding Quantity*/
@@ -273,11 +273,11 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 {                   
                     
                     $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)+1;
-                    localStorage.setItem('carts', JSON.stringify($scope.carts));
+                    sessionStorage.setItem('carts', JSON.stringify($scope.carts));
                     $scope.total += product.productPrice;
-                    localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
+                    sessionStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
                     $scope.count +=1;
-                    localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
+                    sessionStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
                     return count;
                          exist=true;
                 }
@@ -293,11 +293,11 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                     if($scope.carts[i].productQuantity>0){ 
                         
                     $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)-1;
-                    localStorage.setItem('carts', JSON.stringify($scope.carts));
+                    sessionStorage.setItem('carts', JSON.stringify($scope.carts));
                     $scope.total -= product.productPrice;
-                    localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
+                    sessionStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
                     $scope.count -=1;
-                    localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
+                    sessionStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
                     return count;
                          exist=true;
                      };
@@ -305,7 +305,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
             }                      
 	};
 
-        $scope.total = (localStorage.getItem('total')!==null) ? JSON.parse(localStorage.getItem('total')) : "0";
+        $scope.total = (sessionStorage.getItem('total')!==null) ? JSON.parse(sessionStorage.getItem('total')) : "0";
 	   
                 
             $scope.setTotals = function(){
@@ -314,7 +314,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 {
                     total += this.this.toNumber(cart.productQuantity * cart.productPrice);
                 });
-                localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
+                sessionStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
                 return total;
 		/*if(cart){
                     $scope.total += cart.productPrice;
@@ -349,7 +349,7 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
 		
 		var onSuccessRetrival = function(data) {
 		
-			$window.localStorage.setItem("emailAddr",data.emailAddr);
+			$window.sessionStorage.setItem("emailAddr",data.emailAddr);
 			//$scope.logged=data.emailAddress;
 			//console.log($scope.logged);
 			$location.path('/adminPanel');
@@ -364,7 +364,7 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
 		
 		/*To display Logged in Admin*/
 		$scope.$watch('logged',function(newValue,oldValue){
-			$scope.logged=$window.localStorage.getItem("emailAddress");
+			$scope.logged=$window.sessionStorage.getItem("emailAddress");
 			console.log($scope.logged+"**");
 			
 			
