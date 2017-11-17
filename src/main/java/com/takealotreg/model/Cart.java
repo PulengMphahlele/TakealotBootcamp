@@ -21,10 +21,7 @@ public class Cart {
 
     	
 	@Id
-	@Column(name="cartId")
-	private int cartId;
-        
-        @Column(name="productId")
+	@Column(name="productId")
 	private int productId;
 	
 	@Column(name="cartProductName")
@@ -43,14 +40,7 @@ public class Cart {
         
         public Cart(){}
        
-        
-        public int getCartId() {
-        return cartId;
-        }
-
-        public void setCartId(int cartId) {
-            this.cartId = cartId;
-        }
+       
         
 	public int getProductId() {
 		return productId;

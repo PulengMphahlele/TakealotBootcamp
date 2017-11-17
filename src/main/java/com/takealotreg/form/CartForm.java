@@ -7,7 +7,7 @@ package com.takealotreg.form;
 
 public class CartForm {
 	
-        private int cartId;
+        
 	private String cartProductName;
 	
 	private int productId;
@@ -60,14 +60,6 @@ public class CartForm {
 		this.emailAddress = emailAddress;
 	}
 
-        public int getCartId() {
-            return cartId;
-        }
-
-        public void setCartId(int cartId) {
-            this.cartId = cartId;
-        }
-	
 	
 
 }

@@ -213,7 +213,7 @@
                                             </p>
                                         </div>
                                         
-                                                  <form name="order" id="order" class="form-horizontal" ng-submit="placeOrder()">
+                                                  <form name="order" id="order" class="form-horizontal" ng-submit="receipt()">
     
                                                 <div class="form-group">
                                                  
@@ -275,9 +275,11 @@
                                                 <div class="form-group"> 
                                                   <div class="col-sm-offset-2 col-sm-10">
                                                     <input type="submit" class="btn btn-info btn-md" value="Proceed"/>
+                                                    
                                                   </div>
                                                 </div>
                                         </form>
+                                    <button type = "button" ng-click = "receipt()" class = "btn btn-danger">Confirm</button>
                                     </div>
 				</div> 
 			</div>

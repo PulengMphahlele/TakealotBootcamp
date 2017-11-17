@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.Basic;
 import javax.persistence.Table;
 import javax.persistence.*;
+//import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -42,7 +43,19 @@ public class Product {
         
         @Column(name="productQuantity")
 	private int productQuantity;
-  
+        
+//        @Transient
+//        private MultipartFile file;
+//
+//    public MultipartFile getFile() {
+//        return file;
+//    }
+//
+//    public void setFile(MultipartFile file) {
+//        this.file = file;
+//    }
+//  
+        
 
      public Product(){};
     

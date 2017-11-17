@@ -22,6 +22,11 @@ myApp.config(function($routeProvider,$httpProvider,$locationProvider){
 		templateUrl:"view/orderDetails.html",
 		controller:"appctrl"
                 
+	}).when("/receipt",{
+	
+		templateUrl:"view/receipt.html",
+		controller:"appctrl"
+                
 	}).when("/admin",{
 	
 		templateUrl:"view/loginAdmin.html",

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Morwamckay.com">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Edit Shopping Cart - TAKEALOT</title>
-   <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+    <title>Register-TAKEALOT</title>
+    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/bootstrap.css" rel="stylesheet">
     <link href="./static/css/custom.css" rel="stylesheet">
     <link href="./static/css/dropdown.css" rel="stylesheet">
     <link rel="Shortcut Icon" href="./static/icons/favicon.ico" type="image/x-icon">
@@ -15,29 +17,40 @@
     <script src="./static/js/app.js"></script>
     <script src="./static/js/controller/app_controller.js"></script>
     <script src="./static/js/service/http_service.js"></script>
-    <script src="./static/js/angular.js"></script>
-    <script src="./static/js/angular-route.js"></script>
-    <script src="./static/js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.min.js"></script>
   </head>
-  <body ng-app="myApp" ng-controller="appctrl">
+  
+  
+  <body ng-app="myApp" ng-controller="appctrl" >
   <!--Navbar-->
+   <!--Navbar-->
   <nav class="navbar navbar-white navbar-top" id="my-navbar">
-	<div class="container" style="margin-right:50px; width: 1000px;">
+	<div class="container">
 		<div class="navbar-header">
-						
-			<a href="home.html" class="navbar-brand"><img style="max-width: 160px; margin-top: -7px;" src="./static/img/Capture.png" alt="Pic loading..."></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                    </button>
+
+                    <a ng-click="goToHome()" class="navbar-brand"><img style="max-width: 160px; margin-top: -7px;" src="./static/img/Capture.PNG" alt="Home"></a>
 		</div><!-- end navbar header-->
 		<div class="collapse navbar-collapse" id="navbar-collapse">
 			<ul class="nav navbar-nav">
-			<li><a href="#contact">Help</a></li>
+			<li><a href="#contact">Help</a>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a>Hi {{logged}}</a></li>
+			
+                                <li><a>Hi {{logged}}</a>
 				<li><a ng-click="logOut()">LogOut</a></li>
+				<li><a ng-click="newUser()">Register</a></li>
 				<li> 
-				<div class="dropdown">
-					<button class="dropbtn"><a href="">My Account</a>
+				<div class="dropdown" title="Account">
+					<button class="dropbtn" value="My Account">
 					<span class="caret"></span></button>
 					<div class="dropdown-content">
 						<a href="#features">My Account</a>
@@ -49,39 +62,21 @@
 					</div>
 				</div>
 				</li>
-				<li>
-				<div class="Wish_list">
-					<button class="list" style="margin:10px; border:0px; color: White; background-color: red;">
-					<a href="wishlist.htm" title="Wish List"></a>
-					<span style="padding:10px;" class="glyphicon glyphicon-heart"></span>
-					<span>{{count1}}</span></button>
-				</div>
-				</li>
-				<li>
-				<div class="Cart">
-					<div class="Cart">
-					<button class="list" ng-click="userCart()" title="wishlist" style="margin-top:10px; border:0px; color: White; background-color: green;">
-					<span style="padding:10px;" class="glyphicon glyphicon-shopping-cart"></span>
-					<span>{{count}}</span></button>
-				</div>
-				</div>
-				</li>
+			
 			</ul>
 			
 		</div>
 	</div><!-- End Container-->
-  </nav><!-- End Navbar-->
-
-  <!-- container-->
+	 <!-- container-->
  
-	<div class="container1">
+	<div class="container4">
 		<div class="row"> <!-- End of 2nd row-->
 
 			<div class="col-md-3">
-				<div class="dropdown1" style="margin-top:10px; margin-left:40px; margin-bottom:10px;">
-					<button class="dropbtn1">Shop by Department
-					<span class="caret"></span></button>
-					<div class="dropdown1-content">
+			<div class="dropdown1" style="margin-top:10px; margin-left:30px; margin-bottom:10px;">
+			<button class="dropbtn1">Shop by Department
+				<span class="caret"></span></button>
+				<div class="dropdown1-content">
 						<a href="#">Liqour & Soft Drinks</a>
 						<a href="#">Computers & Tablets</a>
 						<a href="#">Cellphones & GPS</a>
@@ -104,7 +99,7 @@
 						<a href="#">Pets</a>
 						<a href="#">Luggage & Travel</a>
 						<a href="#">Vouchers</a>
-						<a href="#" style="background-color:#72DB8E; color:white; font:bold; font-size:18px;">DAILY DEALS</a>
+						<a href="#" style="background-color:#72DB8E; color:white;font-size:18px;">DAILY DEALS</a>
 						
 					</div>
 				</div>
@@ -113,7 +108,7 @@
 				
 					<form style="align:centre" class="form-inline" action="searchProgress1" method="post" >
 						<div class="form-group " style="margin-top:10px; margin-left:-15px;">			
-							<div class="col-lg-3">
+							<div class="col-md-3">
 							  <select class="form-control" id="day">
 								<option value="all" selected="selected">Search All Departments</option>
 								<option value="10">Baby &amp; Toddler</option>
@@ -140,16 +135,16 @@
 						</div>
 					</form>
 			</div>	
-				<div class="col-md-6 pull-right">
+				<div class="col-md-5">
 														
-					<form style="align:centre" class="form-inline" action="searchProgress1" method="post" >
-						<div class="form-group " style="margin-top:10px; margin-left:-80px;">
+					<form  class="form-inline" action="searchProgress1" method="post" >
+						<div class="form-group " style="margin-top:10px;  ">
 						
                                                     <div class="input-group">
-                                                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"  style="width:500px;">
-                                                            <div class="input-group-btn">
-                                                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                                            </div>
+                                                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"  style="width:600px;">
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                                        </div>
                                                     </div>
 
 						</div>
@@ -162,54 +157,52 @@
 	
         <div class="container">
 
-           <div class = "col-md-5">
-                    <fieldset><legend>Cart Items </legend></fieldset>
-                    <div>
-                       
-                        <table class = "table table-condensed table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th><th>Item name</th><th>Quantity</th><th>Unit Cost(R)</th><th></th><th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="cart in carts">
-                                    <td>{{$index + 1}}</td>
-                                    <td>{{cart.productName}}</td>
-                                    <td>{{cart.productQuantity}}
-                                
-                                    </td>
-                                    <td>R {{cart.productPrice}}</td>
-                                     <td>
-                                        <button type = "button" ng-click="removequantity(cart)">
-                                            <span class = "glyphicon glyphicon-minus">
-                                             </span>
-                                        </button>
-                                        <button type = "button" ng-click="addquantity(cart)">
-                                            <span class = "glyphicon glyphicon-plus">
-                                             </span>
-                                        </button>
-                                    </td>
-                                    
-                                    <td >
-                                        <button type = "button" ng-click = "removecart(cart)" class = "btn btn-danger">
-                                           <span class = "glyphicon glyphicon-remove"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style = "font-weight: bold;">
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%;">Subtotal</span>
-                            <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: left;">R{{total}}</span>
-                             <span class = "pull-right" style = "width: 100%; text-align: right;">
-                                 <button type="button" ng-click="updateCart()" class="btn btn-sm btn-warning " float-left>Continue Shopping</button> 
-                                 <button type="button" ng-click="checkOut(cart)" class="btn btn-sm btn-info " float-right>Proceed To CheckOut</button> 
-                             </span>
-                        </p>
-                    </div>
-                </div>
-        </div>
+           <div class="col-md-8">
+				<div class="panel-heading">
+					<div class="panel-title text-left">
+                                            <h1 class="title"><a>Products ordered</a></h1>
+						<hr />
+                                                
+					</div>
+				</div> 
+				<div class="main-login main-center"  >
+                                    <div ng-controller="appctrl" >
+                                        
+                                           <table class = "table table-condensed table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th><th>Item name</th><th>Quantity</th><th>Unit Cost(R)</th><th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="cart in carts">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{cart.productName}}</td>
+                                                        <td>{{cart.productQuantity}}
+
+                                                        </td>
+                                                        <td>R {{cart.productPrice}}</td>
+
+                                            
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p style = "font-weight: bold;">
+                                                <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%;">Total Cost</span>
+                                                <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: left;">R{{total}}</span>
+                                               
+                                            </p>
+                                        </div>
+                                      
+                                    <h3>Order Number :TakeAlot{{randdom}}</h3>
+                                        <h3>Delivery Info</h3>
+                                        
+                                     
+                                    </div>
+				</div> 
+			</div>
+                
+       
 	<a href="#" style="text-align:center; margin-top:10px;"><p>Switch to Mobile</p></a>
 	 <!-- Jumbotron-->
   

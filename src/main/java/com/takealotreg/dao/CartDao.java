@@ -13,7 +13,7 @@ import com.takealotreg.model.User;
 public interface CartDao {
 	
 	public User validate(String user,String pass);
-	public void saveProduct(Cart cart);
+	public void saveProduct(Cart product);
 	public User getUserByEmailAddress(String emailAddress);
 	public List<Cart> getAllProducts(String emailAddress);
 	public Cart getProduct(int productId);
