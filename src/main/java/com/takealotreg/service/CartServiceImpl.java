@@ -60,6 +60,21 @@ public class CartServiceImpl implements CartService {
 		
 	}
 
+        @Override
+	public int updateProduct(Cart product) {
+        int res=0;
+		try{
+			System.out.println("In Dao");
+		 dao.updateProduct(product);
+		 res=1;
+		}catch(Exception e){
+			
+			
+			
+		}
+		return res;
+		
+	}
 
 
 

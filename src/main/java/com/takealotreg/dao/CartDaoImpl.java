@@ -49,6 +49,20 @@ public class CartDaoImpl implements CartDao {
 	sess.save(product);
 		
 	}
+        @Override
+	public void updateProduct(Cart product) {
+	Session sess=sessionFactory.getCurrentSession();
+	System.out.println("In Dao");
+	sess.update(product);
+		
+	}
+        @Override
+	public void deleteProduct(Cart product) {
+	Session sess=sessionFactory.getCurrentSession();
+	System.out.println("In Dao");
+	sess.delete(product);
+		
+	}
 
 	@Override
 	public User getUserByEmailAddress(String emailAddress) {

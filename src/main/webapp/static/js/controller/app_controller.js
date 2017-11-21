@@ -114,7 +114,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 
                     };
                     $scope.logOut=function(){
-                        $scope.addCart()
+         
                         $window.localStorage.clear();
                         $scope.total=0;
                         $scope.count=0;
@@ -159,7 +159,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 if($scope.carts[i].productName===product.productName)
                 {
                    exist=true; 
-                                    
+                     $scope.updateC(product);               
                     $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)+1;
                     $scope.total += product.productPrice;
                     localStorage.setItem( 'total', angular.toJson( $scope.total ) );
@@ -172,7 +172,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
             }
             if(!exist){
                 
- 
+            $scope.addCart(product);
             $scope.carts.push(
                     { productName: product.productName, 
                       productPrice:product.productPrice,
@@ -190,27 +190,65 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                   
            // Add cart to database
            
-           $scope.addCart = function(){
+           $scope.addCart = function(product){
+          
+                       
+                            var productId=product.productId;
+                            var productName=product.productName;
+//                          var productImage=product.productImage;
+                            var productPrice=product.productPrice;
+                            var productQuantity=product.productQuantity;
                         var fData ={  
-                                "cartData":localStorage.getItem("carts"), 
-                                "emailAddress":$window.localStorage.getItem("emailAddress")
+                                "productId": productId, 
+                                "productName": productName, 
+                                "productPrice":productPrice,
+                                "productQuantity":productQuantity,
+                                "emailAddress":$window.sessionStorage.getItem("emailAddress")
                         };
-
+                       
                         var detail={
                                 getUrl:"rest/addToCart",
                                 getFormData:fData
                         };
                    
                         httpService.getDataByForm(detail).then(onSuccess, onError);
-			};
+                        
+                         
+                       };
+                         // Add cart to database
+           
+           $scope.updateC = function(){
+            
+                            var productId=$scope.carts.productId;
+                            var productName=$scope.carts.productName;
+//                          var productImage=$scope.fCart.productImage;
+                            var productPrice=$scope.carts.productPrice;
+                            var productQuantity=$scope.carts.productQuantity;
+                        var fData ={  
+                                "productId": productId, 
+                                "productName": productName, 
+                                "productPrice":productPrice,
+                                "productQuantity":productQuantity,
+                                "emailAddress":$window.sessionStorage.getItem("emailAddress")
+                        };
+                       
+                        var detail={
+                                getUrl:"rest/updateCart",
+                                getFormData:fData
+                        };
+                   
+                        httpService.getDataByFrm(detail).then(onSuccess, onError);
+                        
+                         
+                            };
 			var onError = function(reason) {
-                                alert("Error adding Item");
+                                alert("Error updating Item");
 					
                         };
                         var onSuccess = function(data) {
-                                alert("Cart Updated");
-			};		
-              
+                                 alert("Cart Updated");
+                            		
+                        };
             //To Fetch Product List		 
             $scope.getProducts = function(){
            

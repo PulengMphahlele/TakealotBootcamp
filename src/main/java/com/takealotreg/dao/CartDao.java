@@ -14,6 +14,8 @@ public interface CartDao {
 	
 	public User validate(String user,String pass);
 	public void saveProduct(Cart product);
+        public void updateProduct(Cart product);
+        public void deleteProduct(Cart product);
 	public User getUserByEmailAddress(String emailAddress);
 	public List<Cart> getAllProducts(String emailAddress);
 	public Cart getProduct(int productId);

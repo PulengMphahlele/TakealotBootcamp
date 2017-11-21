@@ -35,7 +35,7 @@ public class Cart {
 	private int cartProductQuantity;
 
 	@ManyToOne
-	@JoinColumn(name="UserEmail",nullable=false)
+	@JoinColumn(name="UserId",nullable=false)
 	private User users;
         
         public Cart(){}

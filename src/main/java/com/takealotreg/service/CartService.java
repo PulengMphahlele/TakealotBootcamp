@@ -15,6 +15,7 @@ public interface CartService {
 	public User getUserByEmailAddress(String emailAddress);
 	public List<Cart> getAllProducts(String emailAddress);
 	public Cart getProduct(int productId);
+        public int updateProduct(Cart product);
      
     /*User findById(long id);
      

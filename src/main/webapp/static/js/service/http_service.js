@@ -20,13 +20,20 @@ angular.module("myApp").factory("httpService",['$http',function($http){
                             function(response) {
                                     return response.data;
                             });
-		}
+		};
+                 var getDataByFrm = function(details) {
+			return $http.put(details.getUrl, details.getFormData).then(
+		
+                            function(response) {
+                                    return response.data;
+                            });
+		};
 		var getData = function(details) {
 			return $http.post(details.getUrl).then(
 					function(response) {
 						return response.data;
 					});
-		}
+		};
 		var getDataByFile = function(details) {
 			return $http.post(details.getUrl,details.getFormData,{
 			    headers: { 'Content-Type': undefined},
@@ -73,6 +80,7 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 		return {
 			getData : getData,
 			getDataByForm : getDataByForm,
+                        getDataByFrm : getDataByFrm,
 			getDataByFile  : getDataByFile,
 			getDataByFileAlone : getDataByFileAlone,
 			setEmailAddress : setEmailAddress,
