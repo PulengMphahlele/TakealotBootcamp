@@ -74,11 +74,11 @@ public class Cart {
 	public void setProductPrice(float cartProductPrice) {
 		this.cartProductPrice = cartProductPrice;
 	}
-	  public int getCartProductQuantity() {
+	  public int getProductQuantity() {
         return cartProductQuantity;
         }
 
-        public void setCartProductQuantity(int cartProductQuantity) {
+        public void setProductQuantity(int cartProductQuantity) {
             this.cartProductQuantity = cartProductQuantity;
         }
 	

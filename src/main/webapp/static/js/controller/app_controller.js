@@ -2,7 +2,7 @@
 
 angular.module('myApp').controller('appctrl',["$scope", "httpService","$location","$window", function($scope,httpService,$location,$window){
 	
-	/*To Validate the User*/
+	/*To Validate the User when logging in*/
 	 $scope.validateuser=function(){
 		var emailAddress=$scope.emailAddress;
 		var password=$scope.password;
@@ -276,7 +276,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			
 		});
                 
-       /* removing Item*/
+                /* removing Item*/
             $scope.removecart = function(cart){
                 if(cart){
                 $scope.carts.splice($scope.carts.indexOf(cart), 1);
@@ -285,7 +285,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 $scope.count =$scope.count - cart.productQuantity;
                 localStorage.setItem( 'count', angular.toJson( $scope.count ) );
                 localStorage.setItem( 'total', angular.toJson( $scope.total ) );
-            }
+                }
             };
             /*Adding Quantity*/
             $scope.addquantity = function(product){
@@ -304,7 +304,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                                  exist=true;
                         }
                 }                      
-        };
+            };
 
     /*Removing Quantity*/
     $scope.removequantity = function(product){
@@ -314,15 +314,15 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 {      
                     if($scope.carts[i].productQuantity>0){ 
 
-                    $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)-1;
-                    localStorage.setItem('carts', JSON.stringify($scope.carts));
-                    $scope.total -= product.productPrice;
-                    localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
-                    $scope.count -=1;
-                    localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
-                    return count;
-                         exist=true;
-                     };
+                        $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)-1;
+                        localStorage.setItem('carts', JSON.stringify($scope.carts));
+                        $scope.total -= product.productPrice;
+                        localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
+                        $scope.count -=1;
+                        localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
+                        return count;
+                        exist=true;
+                    };
                 }
             }                      
 	};

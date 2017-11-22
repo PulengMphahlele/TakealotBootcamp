@@ -85,7 +85,7 @@ public class UserController {
                 prod.setProductId(product.getProductId());
                 prod.setProductName(product.getProductName());
 		prod.setProductPrice(product.getProductPrice());
-                prod.setCartProductQuantity(product.getCartProductQuantity());
+                prod.setProductQuantity(product.getProductQuantity());
 		prod.setUsers(ser.getUserByEmailAddress(product.getEmailAddress()));
 		
 		int res= ser.saveProduct(prod);
@@ -104,7 +104,7 @@ public class UserController {
                 prod.setProductId(product.getProductId());
                 prod.setProductName(product.getProductName());
 		prod.setProductPrice(product.getProductPrice());
-                prod.setCartProductQuantity(product.getCartProductQuantity());
+                prod.setProductQuantity(product.getProductQuantity());
 		prod.setUsers(ser.getUserByEmailAddress(product.getEmailAddress()));
 		
 		int res= ser.updateProduct(prod);

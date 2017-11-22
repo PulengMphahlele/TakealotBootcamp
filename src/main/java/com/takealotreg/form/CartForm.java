@@ -16,11 +16,11 @@ public class CartForm {
         
         private int cartProductQuantity;
 
-        public int getCartProductQuantity() {
+        public int getProductQuantity() {
         return cartProductQuantity;
     }
 
-    public void setCartProductQuantity(int cartProductQuantity) {
+    public void setProductQuantity(int cartProductQuantity) {
         this.cartProductQuantity = cartProductQuantity;
     }
 	
