@@ -222,10 +222,10 @@
                                                 </div>
                                                       <h3>Payment Info</h3>
                                                 <div class="form-group">
-                                                  <label class="control-label col-sm-2" for="bankName">Bank Name:</label>
+                                                  <label class="control-label col-sm-2" for="cardNumber">Card Number:</label>
                                                   <div class="col-sm-10"> 
                                                     <input type="text" class="form-control" id="bankName" ng-model="Bank Name" required>
-                                                    <span ng-show="order.bankName.$touched && order.bankName.$invalid">Bank Name is required.</span>
+                                                    <span ng-show="order.cardNumber.$touched && order.cardNumber.$invalid">Card Number is required.</span>
                                                   </div>
                                                 </div>
                                                <div class="form-group">
@@ -235,13 +235,7 @@
                                                     <span ng-show="order.accountNo.$touched && order.accountNo.$invalid">Account number is required.</span>
                                                   </div>
                                                 </div>
-												<div class="form-group">
-                                                  <label class="control-label col-sm-2" for="atmPin">ATM Pin:</label>
-                                                  <div class="col-sm-10"> 
-                                                    <input type="password" class="form-control" id="atmPin" ng-model="atmPin" required>
-                                                    <!--<span ng-show="order.atmPin.$touched && order.atmPin.$invalid">ATM Pin is required.</span>-->
-                                                  </div>
-                                                </div>
+						
 
                                                       <h3>Delivery Info</h3>
                                                       

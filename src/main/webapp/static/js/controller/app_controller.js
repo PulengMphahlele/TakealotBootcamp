@@ -337,7 +337,49 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
                 return total;
 		
-	} ;    
+	} ;   
+        /* saving Order details */
+        	$scope.saveOrderDetails = function(){
+         
+                        var orderId=$scope.orderId;
+                        var cardNumber=$scope.cardNumber;
+			var accountNo=$scope.accountNo;
+			var sAdddress=$scope.sAdddress;
+                        var city=$scope.city;
+                        var phone=$scope.phone;
+                        var pCode=$scope.pCode;
+			
+		var formdata={  
+                                "orderId":orderId,
+				"cardNumber":cardNumber,
+                                "accountNo":accountNo,
+				"sAdddress":sAdddress,
+                                "phone":phone,
+                                "city":city,
+                                "pCode":pCode
+				
+						
+			};
+                       
+			var details={
+					
+					getUrl:"rest/saveorderD",
+					getFormData:formdata
+					
+			};
+			
+			httpService.getDataByForm(details).then(onSuccessRetrive, onErrOrder);
+		 };
+		 var onErrOrder = function(reason) {
+				alert("Order unseccessful");
+				
+			};
+			
+			var onSuccessRetrive = function(data) {
+			alert("successfully ordered");
+			$location.path('/receipt');
+			};
+			
 	
     }
 	

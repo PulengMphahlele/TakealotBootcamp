@@ -15,25 +15,25 @@ public class CartForm {
 	private float cartProductPrice;
         
         private int cartProductQuantity;
+        
+	private String emailAddress;
+        
 
         public int getProductQuantity() {
         return cartProductQuantity;
-    }
+        }
 
-    public void setProductQuantity(int cartProductQuantity) {
-        this.cartProductQuantity = cartProductQuantity;
-    }
-	
-	private String emailAddress;
-        
-        
+        public void setProductQuantity(int cartProductQuantity) {
+            this.cartProductQuantity = cartProductQuantity;
+        }
+	        
 	public int getProductId() {
 		return productId;
 	}
 
 	public void setProductId(int productId) {
 		this.productId = productId;
-}
+        }
 
 	public String getProductName() {
 		return cartProductName;
