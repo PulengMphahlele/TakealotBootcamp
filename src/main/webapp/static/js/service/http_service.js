@@ -1,10 +1,17 @@
  	'use strict';
 angular.module("myApp").factory("httpService",['$http',function($http){
         
-             this.uploadFileToUrl = function(formdata, uploadUrl){
+        $http.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
+             
+        this.uploadFileToUrl = function(details){
+                
                 var fd = new FormData();
-                fd.append('formdata', formdata);
-                $http.post(uploadUrl, fd, {
+                fd.append('productId', details.formdata.productId);
+                fd.append('productImage', details.formdata.productImage);
+                fd.append('productName', details.formdata.productName);
+                fd.append('productPrice', details.formdata.productPrice);
+                fd.append('productQuantity', details.formdata.productQuantity);
+                $http.post(details.getUrl, fd, {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined}
                 })
@@ -15,11 +22,13 @@ angular.module("myApp").factory("httpService",['$http',function($http){
             };
 
 		 var getDataByForm = function(details) {
-			return $http.post(details.getUrl, details.getFormData).then(
-		
-                            function(response) {
-                                    return response.data;
-                            });
+                     
+                 return $http.post(details.getUrl, details.getFormData)
+                    .then(
+
+                        function(response) {
+                                return response.data;
+                        });
 		};
                  var getDataByFrm = function(details) {
 			return $http.put(details.getUrl, details.getFormData).then(
@@ -46,7 +55,7 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 
 
 					});
-		}
+		};
 		var getDataByFileAlone = function(details) {
 			alert(details.getUrl);
 			alert(details.getFormData);
@@ -57,7 +66,7 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 					function(response) {
 						return response.data;
 					});
-		}
+		};
 		function setEmailAddress(data) {
 			saveUserData = data;
 		}

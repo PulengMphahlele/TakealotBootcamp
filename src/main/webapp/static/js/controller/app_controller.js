@@ -339,7 +339,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 		
 	} ;   
         /* saving Order details */
-        	$scope.saveOrderDetails = function(){
+        	$scope.saveOrder= function(){
          
                         var orderId=$scope.orderId;
                         var cardNumber=$scope.cardNumber;
@@ -349,7 +349,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                         var phone=$scope.phone;
                         var pCode=$scope.pCode;
 			
-		var formdata={  
+		var formdat={  
                                 "orderId":orderId,
 				"cardNumber":cardNumber,
                                 "accountNo":accountNo,
@@ -364,18 +364,18 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			var details={
 					
 					getUrl:"rest/saveorderD",
-					getFormData:formdata
+					getFormData:formdat
 					
 			};
 			
-			httpService.getDataByForm(details).then(onSuccessRetrive, onErrOrder);
+			httpService.getDataByForm(details).then(onSuccessOrder, onErrOrder);
 		 };
 		 var onErrOrder = function(reason) {
 				alert("Order unseccessful");
 				
 			};
 			
-			var onSuccessRetrive = function(data) {
+			var onSuccessOrder = function(data) {
 			alert("successfully ordered");
 			$location.path('/receipt');
 			};
@@ -443,10 +443,10 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
              
 		
 		$scope.addProduct = function(){
-         
+                        
                         var productId=$scope.productId;
 			var productName=$scope.productName;
-			var productImage=$scope.productImage;
+			var productImage =$scope.productImage;
                         var productPrice=$scope.productPrice;
                         var productQuantity=$scope.productQuantity;
 			
@@ -462,7 +462,7 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
                        
 			var details={
 					
-					getUrl:"rest/addProduct",
+					getUrl:"rest/uploadFile",
 					getFormData:formdata
 					
 			};
@@ -483,4 +483,39 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
      }
 ]);
 
-
+angular.module('myApp').directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+//.directive("fileinput", [function() {
+//    return {
+//      scope: {
+//        fileinput: "=",
+//        filepreview: "="
+//      },
+//      link: function(scope, element, attributes) {
+//        element.bind("change", function(changeEvent) {
+//          scope.fileinput = changeEvent.target.files[0];
+//          var reader = new FileReader();
+//          reader.onload = function(loadEvent) {
+//            scope.$apply(function() {
+//              scope.filepreview = loadEvent.target.result;
+//            });
+//          };
+//          reader.readAsDataURL(scope.fileinput);
+//        });
+//      }
+//    };
+//  }]);
+        

@@ -13,9 +13,13 @@ import com.takealotreg.form.CartForm;
 import com.takealotreg.model.Cart;
 import com.takealotreg.model.User;
 import com.takealotreg.model.Admin;
+import com.takealotreg.model.Product;
 import com.takealotreg.service.UserService;
 import com.takealotreg.service.CartService;
 import java.util.ArrayList;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 
@@ -131,5 +135,26 @@ public class UserController {
 		return artcl;
 	}
         
+        	 //------------------- Delete a Product --------------------------------------------------------
+     
+//    @RequestMapping(value = "/deleteProd/{productId}", method = RequestMethod.DELETE)
+//    public ResponseEntity<Cart> deleteProduct(@PathVariable("productId") int productId, int userId) {
+//        System.out.println("Fetching & Deleting Product with id " + productId);
+// 
+//        Cart product = ser.getCartByPriductId(int productId , int userId);
+//        if (product == null) {
+//            System.out.println("Unable to delete. User with id " + productId + " not found");
+//            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+//        }
+// 
+//        service.deleteProductById(product);
+//        return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
+//    }
+//        
+        @RequestMapping(path="/user/{userId}",method=RequestMethod.DELETE)
+        public ResponseEntity<Void> deleteById(@PathVariable ("productId") Cart cart) {
+            ser.deleteCartById(cart);
+            return ResponseEntity.noContent().build();
+        }
 
 }

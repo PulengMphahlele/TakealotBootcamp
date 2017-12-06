@@ -16,5 +16,7 @@ public interface OrderSer {
         public User getOrderByEmailAddress(String emailAddress);
 	public List<OrderDetails> getAllOrderDetails();
 	public OrderDetails getOrderDetails(int orderId);
+        public void deleteOrderById(int orderId);
+        
      
 }

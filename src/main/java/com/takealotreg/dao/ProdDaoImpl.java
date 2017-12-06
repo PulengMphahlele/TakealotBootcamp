@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.takealotreg.model.Product;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 @Repository
 @Transactional
@@ -62,6 +64,15 @@ public class ProdDaoImpl implements ProdDao {
 		Product prod=(Product) sess.load(Product.class, productId);
 		return prod;
 	}
-	
-	
+	@Override
+        public void deleteProductById(Product product) {
+                String hql="DELETE Product u where u.productId=:productId";
+                 sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+//                Session sess=sessionFactory.getCurrentSession();
+//                Query qry=sess.createQuery(hql);
+//                prod.setProductId(productId);
+//		sess.delete(prod);
+               
+
+        }
 }

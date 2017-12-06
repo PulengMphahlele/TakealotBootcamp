@@ -102,5 +102,15 @@ public class CartServiceImpl implements CartService {
 		return dao.getProduct(productId);
 	}
   
+        @Override 
+        public void deleteCartById(Cart cart) {
+                       dao.deleteCartById(cart);
+               }
  
+        @Override
+	public Cart getCartByPriductId(int productId , int userId) {
+		// TODO Auto-generated method stub
+		return dao.getCartByProductId(productId , userId);
+	}
+
 }

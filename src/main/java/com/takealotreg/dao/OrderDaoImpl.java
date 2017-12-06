@@ -62,5 +62,13 @@ public class OrderDaoImpl implements OrderDao {
 		return prod;
 	}
 	
-	
+	  @Override
+        public void deleteOrderById(int orderId) {
+            
+                OrderDetails ord = new OrderDetails();
+		Session sess=sessionFactory.getCurrentSession();
+                ord.setOrderId(orderId);
+		sess.delete(ord);
+
+        }
 }

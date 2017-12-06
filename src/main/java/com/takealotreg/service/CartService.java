@@ -16,6 +16,8 @@ public interface CartService {
 	public List<Cart> getAllProducts(String emailAddress);
 	public Cart getProduct(int productId);
         public int updateProduct(Cart product);
+        public void deleteCartById(Cart cart);
+        public Cart getCartByPriductId(int productId , int userId);
      
     /*User findById(long id);
      

@@ -46,7 +46,7 @@ public class OrderSerImpl implements OrderSer {
 		
 	}
 
-@Override
+        @Override
 	public User getOrderByEmailAddress(String emailAddress) {
 		// TODO Auto-generated method stub
 		return dao.getOrderByEmailAddress(emailAddress);
@@ -70,6 +70,10 @@ public class OrderSerImpl implements OrderSer {
 		return dao.getOrderDetails(orderId);
 	}
   
+      @Override 
+        public void deleteOrderById(int orderId) {
+                       dao.deleteOrderById(orderId);
+               }
 
 
  

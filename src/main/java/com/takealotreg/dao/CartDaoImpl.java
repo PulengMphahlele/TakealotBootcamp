@@ -100,6 +100,32 @@ public class CartDaoImpl implements CartDao {
 		return art;
 	}
 	
-	
+        @Override
+        public void deleteCartById(Cart cart) {
+     
+            String hql="DELETE Cart u where u.productId=:productId";
+            sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+//          Session sess=sessionFactory.getCurrentSession();
+//          Query qry=sess.createQuery(hql);
+//          prod.setProductId(productId);
+//          sess.delete(prod);
+               
 
+        }
+        @Override
+        public Cart getCartByProductId(int productId , int userId){
+          Session sess=sessionFactory.getCurrentSession();
+            String hql="FROM Cart u where u.productId=:productId && u.userId=:userId";
+            Query query = sess.createQuery(hql);
+            query.setParameter("productId",productId);
+            List results = query.list();
+            Cart us=null;
+            
+            if(results.size()>0){
+			us=(Cart) results.get(0);
+			return us;
+		}else{
+			return us;
+		}
+	}
 }

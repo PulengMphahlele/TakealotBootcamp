@@ -70,7 +70,11 @@ public class ProdServiceImpl implements ProdService {
 		// TODO Auto-generated method stub
 		return dao.getProduct(productId);
 	}
-  
+        
+        @Override 
+        public void deleteProductById(Product product) {
+                       dao.deleteProductById(product);
+               }
 
 
  

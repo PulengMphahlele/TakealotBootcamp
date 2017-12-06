@@ -19,5 +19,7 @@ public interface CartDao {
 	public User getUserByEmailAddress(String emailAddress);
 	public List<Cart> getAllProducts(String emailAddress);
 	public Cart getProduct(int productId);
+        public void deleteCartById(Cart cart);
+        public Cart getCartByProductId(int productId , int userId);
 
 }
