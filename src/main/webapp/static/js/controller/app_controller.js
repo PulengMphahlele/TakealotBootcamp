@@ -450,31 +450,30 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
                         var productPrice=$scope.productPrice;
                         var productQuantity=$scope.productQuantity;
 			
-		var formdata={
-				"productId":productId,
-                                "productName":productName,
-				"productImage":productImage,
-                                "productPrice":productPrice,
-                                "productQuantity":productQuantity
-				
-						
-			};
+		  
+                var fd = new FormData();
+                fd.append('productId', productId);
+                fd.append('productImage',productImage);
+                fd.append('productName', productName);
+                fd.append('productPrice', productPrice);
+                fd.append('productQuantity', productQuantity);
+               
                        
 			var details={
 					
 					getUrl:"rest/uploadFile",
-					getFormData:formdata
+					getFormData:fd
 					
 			};
 			alert(productImage +''+ productName +''+ productPrice);
-			httpService.getDataByForm(details).then(onSuccessRetrivals, onErrorProduct);
+			httpService.uploadFileToUrl(details).then(onSuccessR, onErrorProduct);
 		 };
 		 var onErrorProduct = function(reason) {
 				alert("Product is not added");
 				
 			};
 			
-			var onSuccessRetrivals = function(data) {
+			var onSuccessR = function(data) {
 			alert("Product successfully Added");
 			$location.path('/adminPanel');
 			};

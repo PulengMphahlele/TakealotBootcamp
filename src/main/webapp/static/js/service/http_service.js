@@ -1,19 +1,18 @@
  	'use strict';
 angular.module("myApp").factory("httpService",['$http',function($http){
-        
-        $http.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
-             
+           
         this.uploadFileToUrl = function(details){
                 
-                var fd = new FormData();
-                fd.append('productId', details.formdata.productId);
-                fd.append('productImage', details.formdata.productImage);
-                fd.append('productName', details.formdata.productName);
-                fd.append('productPrice', details.formdata.productPrice);
-                fd.append('productQuantity', details.formdata.productQuantity);
-                $http.post(details.getUrl, fd, {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type': undefined}
+//                var fd = new FormData();
+//                fd.append('productId', details.getFormData.productId);
+//                fd.append('productImage', details.getFormData.productImage);
+//                fd.append('productName', details.getFormData.productName);
+//                fd.append('productPrice', details.getFormData.productPrice);
+//                fd.append('productQuantity', details.getFormData.productQuantity);
+                $http.post(details.getUrl, details.getFormData, {
+                    
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
                 })
                 .success(function(){
                 })
@@ -60,8 +59,9 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 			alert(details.getUrl);
 			alert(details.getFormData);
 			return $http.post(details.getUrl,details.getFormData,{
-				transformRequest: angular.identity,
-	            headers: {'Content-Type': undefined}
+				
+                                headers: {'Content-Type': undefined},
+                                transformRequest: angular.identity
 			}).then(
 					function(response) {
 						return response.data;

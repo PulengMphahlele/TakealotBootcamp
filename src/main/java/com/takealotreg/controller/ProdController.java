@@ -86,8 +86,8 @@ public class ProdController {
     
        // saving the New product
    
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, headers="Accept=application/json")
-     public @ResponseBody Product newProduct(@RequestParam(value = "productImage") MultipartFile productImage,@RequestParam(value = "productId") int productId,
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+     public Product newProduct(@RequestParam(value = "productImage") MultipartFile productImage,@RequestParam(value = "productId") int productId,
              @RequestParam(value = "productName") String productName,@RequestParam(value = "productPrice") int productPrice,
              @RequestParam(value = "productQuantity") int productQuantity) {
 
@@ -112,6 +112,8 @@ public class ProdController {
               item.setProductPrice(productPrice);
               item.setProductQuantity(productQuantity);
               item.setProductImage(byteArr);
+              
+              System.out.print(item);
               service.saveProduct(item);
             
               return null;
