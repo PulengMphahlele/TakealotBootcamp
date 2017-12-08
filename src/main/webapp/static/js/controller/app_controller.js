@@ -384,7 +384,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
     }
 	
 ]);
-angular.module('myApp').controller('adminctrl',["$scope", "httpService","$location","$window",function($scope,httpService,$location,$window){
+angular.module('myApp').controller('adminctrl',["$scope", "httpService","$location","$window","fileUpload",function($scope,httpService,$location,$window,fileUpload){
 	
         
 	/*To Validate the Admin*/
@@ -444,40 +444,51 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
 		
 		$scope.addProduct = function(){
                         
-                        var productId=$scope.productId;
-			var productName=$scope.productName;
-			var productImage =$scope.productImage;
-                        var productPrice=$scope.productPrice;
-                        var productQuantity=$scope.productQuantity;
-			
-		  
-                var fd = new FormData();
-                fd.append('productId', productId);
-                fd.append('productImage',productImage);
-                fd.append('productName', productName);
-                fd.append('productPrice', productPrice);
-                fd.append('productQuantity', productQuantity);
-               
-                       
-			var details={
-					
-					getUrl:"rest/uploadFile",
-					getFormData:fd
-					
-			};
-			alert(productImage +''+ productName +''+ productPrice);
-			httpService.uploadFileToUrl(details).then(onSuccessR, onErrorProduct);
+//                       
+//			var detail={
+//					
+//					getUrl:"rest/uploadFile",
+//                                        getFormD: fd
+//					
+//			};
+//			
+//                        
+//                        console.log('image fd ', detail);
+//			
 		 };
-		 var onErrorProduct = function(reason) {
-				alert("Product is not added");
-				
-			};
-			
-			var onSuccessR = function(data) {
-			alert("Product successfully Added");
-			$location.path('/adminPanel');
-			};
-			
+                 $scope.uploadFile = function(){
+                    var productImage = $scope.productImage;
+                    var productId = $scope.productId;
+                    var productName = $scope.productName;
+                    var productPrice = $scope.productPrice;
+                    var productQuantity = $scope.productQuantity;
+                    
+                     var details = {
+                        productId,
+                        productName,
+                        productPrice,
+                        productQuantity
+                     };
+                    
+                    console.log('productImage is ' );
+                    console.dir(productImage);
+                    console.log('productName is ' );
+                    console.dir(details.productName);
+                    console.log('productPrice is ' );
+                    console.dir(details.productPrice);
+                    var uploadUrl = "rest/uploadFile";
+                    fileUpload.uploadFileToUrl(productImage, uploadUrl, details);
+                };
+//		 var onErrorProduct = function(reason) {
+//				alert("Product is not added");
+//				
+//			};
+//			
+//			var onSuccessR = function(data) {
+//			alert("Product successfully Added");
+//			$location.path('/adminPanel');
+//			};
+//			
 	
      }
 ]);
@@ -497,24 +508,24 @@ angular.module('myApp').directive('fileModel', ['$parse', function ($parse) {
         }
     };
 }]);
-//.directive("fileinput", [function() {
-//    return {
-//      scope: {
-//        fileinput: "=",
-//        filepreview: "="
-//      },
-//      link: function(scope, element, attributes) {
-//        element.bind("change", function(changeEvent) {
-//          scope.fileinput = changeEvent.target.files[0];
-//          var reader = new FileReader();
-//          reader.onload = function(loadEvent) {
-//            scope.$apply(function() {
-//              scope.filepreview = loadEvent.target.result;
-//            });
-//          };
-//          reader.readAsDataURL(scope.fileinput);
-//        });
-//      }
-//    };
-//  }]);
-        
+angular.module('myApp').service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(productImage, uploadUrl, details){
+        var fd = new FormData();
+        fd.append('productImage', productImage);
+        fd.append('productId', details.productId);
+        fd.append('productName', details.productName);
+        fd.append('productPrice', details.productPrice);
+        fd.append('productQuantity', details.productQuantity);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(){
+           alert("Product is not added"); 
+        })
+        .error(function(){
+            alert("Product successfully Added");
+            
+        });
+    };
+}]);

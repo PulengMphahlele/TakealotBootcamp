@@ -66,7 +66,7 @@ public class ProdServiceImpl implements ProdService {
 
 
 	@Override
-	public Product getProduct(int productId) {
+	public Product getProduct(String productId) {
 		// TODO Auto-generated method stub
 		return dao.getProduct(productId);
 	}

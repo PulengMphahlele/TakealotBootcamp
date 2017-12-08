@@ -172,10 +172,10 @@
          <div class="container" >
             <div class="row">
            <form>           
-               <table class="table" >
+             <!--  <table class="table" >
                        <thead>
                            <tr>
-                              <!--<th>Product Image</th>-->
+                              <th>Product Image</th>
                                <th>Products</th>
                                <th>Price</th>
                                 <th >Quantity</th>
@@ -185,7 +185,7 @@
                        </thead>
                        <tbody data-ng-init ="getProducts()">
                          <tr class="info"  data-ng-repeat="product in productList">
-                           <!--<td>{{item.productImage}}</td>--> 
+                             <td><img ng-src="data:image/png;base64,{{product.productImage}}" style="width: 50px; height: 70px;"></img></td> 
                            <td>{{product.productName}}</td>
                            <td>R{{product.productPrice}}</td>
                            
@@ -206,7 +206,29 @@
                            </td>
                          </tr>
                        </tbody>
-                   </table>
+                   </table>-->
+             <div class="col-sm-4">
+             <ul class="product-list small-block-grid-3">
+			<li ng-repeat="product in productList">
+				<figure>
+					<img ng-src="data:image/png;base64,{{product.productImage}}" alt="{{product.productName}}" style="width: 100px; height: 100px;"></img>
+					<figcaption>
+						<h3>{{product.productName}}, R{{product.productPrice}}</h3>
+                                                <button type = "button" ng-click="removequantity(product)">
+                                                    <span class = "glyphicon glyphicon-minus">
+                                                     </span>
+                                                </button>
+                                                <button type = "button" ng-click="addquantity(product)">
+                                                    <span class = "glyphicon glyphicon-plus">
+                                                     </span>
+                                                </button>
+						<button type="button" ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
+                                                <button type="button" ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
+					</figcaption>
+				</figure>
+			</li>
+		</ul>
+              </div>
             </form>
             </div>
              <div class="row">

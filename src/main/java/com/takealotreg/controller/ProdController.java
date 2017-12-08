@@ -1,5 +1,6 @@
 package com.takealotreg.controller;
 
+import com.takealotreg.form.FileBucket;
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,24 +87,27 @@ public class ProdController {
     
        // saving the New product
    
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-     public Product newProduct(@RequestParam(value = "productImage") MultipartFile productImage,@RequestParam(value = "productId") int productId,
-             @RequestParam(value = "productName") String productName,@RequestParam(value = "productPrice") int productPrice,
-             @RequestParam(value = "productQuantity") int productQuantity) {
-
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, headers="Accept=application/json")
+     public @ResponseBody Product newProduct
+            (@RequestParam(value = "productImage") MultipartFile productImage,@RequestParam(value = "productId") String productId,
+             @RequestParam(value = "productName") String productName,@RequestParam(value = "productPrice") String productPrice,
+             @RequestParam(value = "productQuantity") String productQuantity) {
+     
               
       byte [] byteArr = null;
             try {
                 byteArr = productImage.getBytes();
+                System.out.println("image..."+ productImage);
+                
             } catch (IOException ex) {
-                Logger.getLogger(RestController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProdController.class.getName()).log(Level.SEVERE, null, ex);
             }
       InputStream inputStream = new ByteArrayInputStream(byteArr);
             try {
                 inputStream.read(byteArr);
                 inputStream.close();
             } catch (IOException ex) {
-                Logger.getLogger(RestController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProdController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
               Product item=new Product();

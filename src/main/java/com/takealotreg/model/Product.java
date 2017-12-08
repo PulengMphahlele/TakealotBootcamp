@@ -28,9 +28,9 @@ public class Product {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="productId")
-	private int productId;
+	private String productId;
 	
-        @Lob @Basic(fetch = FetchType.LAZY)
+//        @Lob @Basic(fetch = FetchType.LAZY)
 	@Column(name="productImage")      
 	byte[] productImage;
 	
@@ -39,10 +39,10 @@ public class Product {
 	private String productName;
 	
 	@Column(name="productPrice")
-	private float productPrice;
+	private String productPrice;
         
         @Column(name="productQuantity")
-	private int productQuantity;
+	private String productQuantity;
         
 //        @Transient
 //        private MultipartFile file;
@@ -59,7 +59,7 @@ public class Product {
 
      public Product(){};
     
-    public Product(int productId, String productName, float productPrice, byte[] productImage, int productQuantity) {
+    public Product(String productId, String productName, String productPrice, byte[] productImage, String productQuantity) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -68,11 +68,11 @@ public class Product {
       
     }
         
-        public int getProductId() {
+        public String getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 
@@ -93,18 +93,18 @@ public class Product {
 	}
 
 
-	public float getProductPrice() {
+	public String getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(float productPrice) {
+	public void setProductPrice(String productPrice) {
 		this.productPrice = productPrice;
 	}
-        	public int getProductQuantity() {
+        	public String getProductQuantity() {
 		return productQuantity;
 	}
 
-	public void setProductQuantity(int productQuantity) {
+	public void setProductQuantity(String productQuantity) {
 		this.productQuantity = productQuantity;
 	}
 	@Override

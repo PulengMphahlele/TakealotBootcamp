@@ -65,7 +65,7 @@
                         </div> 
                         <div class="main-login main-center"  >
                             <div ng-controller="adminctrl" >
-                                <form name="productAdd" id="products" class="form-horizontal" ng-submit="addProduct()" enctype="multipart/form-data">
+                                <form name="productAdd" id="products" class="form-horizontal" ng-submit="uploadFile()" >
 
                                         <div class="form-group">
 
@@ -77,10 +77,7 @@
                                           <label class="control-label col-sm-2" for="productImage">Product Image:</label>
                                           <div class="col-sm-10"> 
                                              <input type="file" id="productImage" file-model="productImage" />
-                                                
-                                             <!--<div class="col-md-2">
-                                                <img ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview"/>
-                                             </div>-->
+                                          
                                              <div class="col-md-3" ng-show="productImage">
                                                 {{productImage.name}}<br />
                                                 {{productImage.size}} byte(s)<br/>
@@ -106,7 +103,7 @@
                                          <div class="form-group">
                                           <label class="control-label col-sm-2" for="productQuantity">Quantity:</label>
                                           <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="productQuantity" ng-model="productQuantity" placeholder="enter the quantity" required>
+                                            <input type="text" class="form-control" id="productQuantity" ng-model="productQuantity" placeholder="enter the quantity" required>
                                           </div>
                                         </div>
                                        

@@ -59,7 +59,7 @@ public class ProdDaoImpl implements ProdDao {
 	}
 
 	@Override
-	public Product getProduct(int productId) {
+	public Product getProduct(String productId) {
 		Session sess=sessionFactory.getCurrentSession();
 		Product prod=(Product) sess.load(Product.class, productId);
 		return prod;

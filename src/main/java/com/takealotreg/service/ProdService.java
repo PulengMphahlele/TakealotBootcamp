@@ -16,7 +16,7 @@ public interface ProdService {
 	public int saveProduct(Product product);
         public Product getProductByPriductId(int productId);
 	public List<Product> getAllProducts();
-	public Product getProduct(int productId);
+	public Product getProduct(String productId);
         public void deleteProductById(Product product);
      
 }

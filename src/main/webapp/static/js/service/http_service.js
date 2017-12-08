@@ -1,25 +1,37 @@
  	'use strict';
 angular.module("myApp").factory("httpService",['$http',function($http){
            
-        this.uploadFileToUrl = function(details){
-                
+//        this.uploadFileToUrl = function(detail){
+//                
 //                var fd = new FormData();
 //                fd.append('productId', details.getFormData.productId);
 //                fd.append('productImage', details.getFormData.productImage);
 //                fd.append('productName', details.getFormData.productName);
 //                fd.append('productPrice', details.getFormData.productPrice);
 //                fd.append('productQuantity', details.getFormData.productQuantity);
-                $http.post(details.getUrl, details.getFormData, {
-                    
-                    headers: {'Content-Type': undefined},
-                    transformRequest: angular.identity
-                })
-                .success(function(){
-                })
-                .error(function(){
-                });
-            };
+//                $http.post(detail.getUrl, detail.getFormD, {
+//                    
+//                    headers: {'Content-Type': undefined},
+//                    transformRequest: angular.identity
+//                })
+//                .success(function(){
+//                })
+//                .error(function(){
+//                });
+//            };
 
+                this.uploadFileToUrl = function(productImage, uploadUrl){
+                    var fd = new FormData();
+                    fd.append('productImage', productImage);
+                    $http.post(uploadUrl, fd, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined}
+                    })
+                    .success(function(){
+                    })
+                    .error(function(){
+                    });
+                };
 		 var getDataByForm = function(details) {
                      
                  return $http.post(details.getUrl, details.getFormData)
@@ -87,6 +99,7 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 		}
                 
 		return {
+                     
 			getData : getData,
 			getDataByForm : getDataByForm,
                         getDataByFrm : getDataByFrm,
