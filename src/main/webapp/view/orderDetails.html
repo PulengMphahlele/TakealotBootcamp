@@ -181,8 +181,7 @@
 					</div>
 				</div> 
 				<div class="main-login main-center"  >
-                                    <div ng-controller="appctrl" >
-                                        
+                              
                                            <table class = "table table-condensed table-striped">
                                                 <thead>
                                                     <tr>
@@ -200,7 +199,7 @@
 
                                                         <td >
                                                             <button type = "button" ng-click = "removecart(cart)" class = "btn btn-danger">
-                                                               <span class = "glyphicon glyphicon-remove"></span>
+                                                               <span class = "glyphicon glyphicon-remove"> </span>
                                                             </button>
                                                         </td>
                                                     </tr>
@@ -211,7 +210,7 @@
                                                 <span class = "pull-right" style = "border-bottom: dotted 2px #000; width: 100%; text-align: left;">R{{total}}</span>
                                                
                                             </p>
-                                        </div>
+                                        
                                         
                                               <form name="order" id="order" class="form-horizontal" ng-submit="saveOrder()">
     
@@ -225,14 +224,14 @@
                                                   <label class="control-label col-sm-2" for="cardNumber">Card Number:</label>
                                                   <div class="col-sm-10"> 
                                                     <input type="text" class="form-control" id="bankName" ng-model="Bank Name" required>
-                                                    <span ng-show="order.cardNumber.$touched && order.cardNumber.$dirty">Card Number is required.</span>
+                                                    <span ng-show="order.cardNumber.$touched && order.cardNumber.$invalid">Card Number is required.</span>
                                                   </div>
                                                 </div>
                                                <div class="form-group">
                                                   <label class="control-label col-sm-2" for="accountNo">Account Number:</label>
                                                   <div class="col-sm-10"> 
                                                     <input type="text" class="form-control" id="accountNo" ng-model="accountNo" required>
-                                                    <span ng-show="order.accountNo.$touched && order.accountNo.$dirty">Account number is required.</span>
+                                                    <span ng-show="order.accountNo.$touched && order.cardNumber.$invalid">Account number is required.</span>
                                                   </div>
                                                 </div>
 						

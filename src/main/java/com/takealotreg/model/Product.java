@@ -39,10 +39,10 @@ public class Product {
 	private String productName;
 	
 	@Column(name="productPrice")
-	private String productPrice;
+	private Integer productPrice;
         
         @Column(name="productQuantity")
-	private String productQuantity;
+	private Integer productQuantity;
         
 //        @Transient
 //        private MultipartFile file;
@@ -59,7 +59,7 @@ public class Product {
 
      public Product(){};
     
-    public Product(String productId, String productName, String productPrice, byte[] productImage, String productQuantity) {
+    public Product(String productId, String productName, Integer productPrice, byte[] productImage, Integer productQuantity) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -93,18 +93,18 @@ public class Product {
 	}
 
 
-	public String getProductPrice() {
+	public Integer getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(String productPrice) {
+	public void setProductPrice(Integer productPrice) {
 		this.productPrice = productPrice;
 	}
-        	public String getProductQuantity() {
+        	public Integer getProductQuantity() {
 		return productQuantity;
 	}
 
-	public void setProductQuantity(String productQuantity) {
+	public void setProductQuantity(Integer productQuantity) {
 		this.productQuantity = productQuantity;
 	}
 	@Override

@@ -1,3 +1,5 @@
+/* global $location */
+
 'use strict';
 
 angular.module('myApp').controller('appctrl',["$scope", "httpService","$location","$window", function($scope,httpService,$location,$window){
@@ -361,14 +363,14 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 						
 			};
                        
-			var details={
+			var dets={
 					
 					getUrl:"rest/saveorderD",
 					getFormData:formdat
 					
 			};
 			
-			httpService.getDataByForm(details).then(onSuccessOrder, onErrOrder);
+			httpService.getDataByForm(dets).then(onSuccessOrder, onErrOrder);
 		 };
 		 var onErrOrder = function(reason) {
 				alert("Order unseccessful");
@@ -434,28 +436,13 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
                 };
                
 		
-                            /*Go to Home*/
-                            $scope.goToHome=function(){
-                                    $location.path('/home');
+                /*Go to Home*/
+                $scope.goToHome=function(){
+                        $location.path('/home');
 
-                            };
+                };
 		 /*To add the Product*/
-             
-		
-		$scope.addProduct = function(){
-                        
-//                       
-//			var detail={
-//					
-//					getUrl:"rest/uploadFile",
-//                                        getFormD: fd
-//					
-//			};
-//			
-//                        
-//                        console.log('image fd ', detail);
-//			
-		 };
+
                  $scope.uploadFile = function(){
                     var productImage = $scope.productImage;
                     var productId = $scope.productId;
@@ -469,27 +456,31 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
                         productPrice,
                         productQuantity
                      };
-                    
-                    console.log('productImage is ' );
-                    console.dir(productImage);
-                    console.log('productName is ' );
-                    console.dir(details.productName);
-                    console.log('productPrice is ' );
-                    console.dir(details.productPrice);
+                   
                     var uploadUrl = "rest/uploadFile";
                     fileUpload.uploadFileToUrl(productImage, uploadUrl, details);
                 };
-//		 var onErrorProduct = function(reason) {
-//				alert("Product is not added");
-//				
-//			};
-//			
-//			var onSuccessR = function(data) {
-//			alert("Product successfully Added");
-//			$location.path('/adminPanel');
-//			};
-//			
-	
+			
+                    //To Fetch Product List		 
+            $scope.getProducts = function(){
+
+            var details={
+                    getUrl:"rest/getAllProducts"
+            };
+
+            httpService.getData(details).then(successProd, prodFailure);
+            };
+
+            var successProd=function successCallback(data) {
+
+                    $scope.productList=data;
+            };
+
+            var prodFailure=function errorCallback(reason) {
+                    alert('Not Able to Fetch Product');
+            };
+
+            $scope.getProducts();
      }
 ]);
 
@@ -521,11 +512,11 @@ angular.module('myApp').service('fileUpload', ['$http', function ($http) {
             headers: {'Content-Type': undefined}
         })
         .success(function(){
-           alert("Product is not added"); 
+           alert("Product successfully Added"); 
         })
         .error(function(){
-            alert("Product successfully Added");
-            
+            alert("Product is not added");
+            $location.path('/adminPanel');
         });
     };
 }]);

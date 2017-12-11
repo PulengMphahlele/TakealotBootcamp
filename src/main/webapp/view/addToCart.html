@@ -172,63 +172,24 @@
          <div class="container" >
             <div class="row">
            <form>           
-             <!--  <table class="table" >
-                       <thead>
-                           <tr>
-                              <th>Product Image</th>
-                               <th>Products</th>
-                               <th>Price</th>
-                                <th >Quantity</th>
-                               <th ></th>
-                               
-                           </tr>
-                       </thead>
-                       <tbody data-ng-init ="getProducts()">
-                         <tr class="info"  data-ng-repeat="product in productList">
-                             <td><img ng-src="data:image/png;base64,{{product.productImage}}" style="width: 50px; height: 70px;"></img></td> 
-                           <td>{{product.productName}}</td>
-                           <td>R{{product.productPrice}}</td>
-                           
-                           <td>
-                                <button type = "button" ng-click="removequantity(product)">
-                                    <span class = "glyphicon glyphicon-minus">
-                                     </span>
-                                </button>
-                                <button type = "button" ng-click="addquantity(product)">
-                                    <span class = "glyphicon glyphicon-plus">
-                                     </span>
-                                </button>
-                            </td>
-
-                           <td>
-                               <button type="button" ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
-                               <button type="button" ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
-                           </td>
-                         </tr>
-                       </tbody>
-                   </table>-->
-             <div class="col-sm-4">
-             <ul class="product-list small-block-grid-3">
-			<li ng-repeat="product in productList">
-				<figure>
-					<img ng-src="data:image/png;base64,{{product.productImage}}" alt="{{product.productName}}" style="width: 100px; height: 100px;"></img>
-					<figcaption>
-						<h3>{{product.productName}}, R{{product.productPrice}}</h3>
-                                                <button type = "button" ng-click="removequantity(product)">
-                                                    <span class = "glyphicon glyphicon-minus">
-                                                     </span>
-                                                </button>
-                                                <button type = "button" ng-click="addquantity(product)">
-                                                    <span class = "glyphicon glyphicon-plus">
-                                                     </span>
-                                                </button>
-						<button type="button" ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right>Add To Cart</button> 
-                                                <button type="button" ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right>Add To Wish List</button>
-					</figcaption>
-				</figure>
-			</li>
-		</ul>
-              </div>
+             
+                <div class="row">
+                     <a ng-repeat="product in productList">
+                        <div class="col-sm-6 col-md-4">
+                          <div class="thumbnail">
+                              </br>
+                            <img ng-src="data:image/png;base64,{{product.productImage}}" alt="{{product.productName}}" style="width: 150px; height: 200px;" ></img>
+                            <div class="caption">
+                              <h3>{{product.productName}}</h3>
+                              <p>R{{product.productPrice}}</p>
+                              <p><button type="button" ng-click="addToCart(product)" class="btn btn-sm btn-success " float-right>Add To Cart</button>  <button type="button" ng-click="addToWishList(product)" class="btn btn-sm btn-default " float-right>Add To Wish List</button></p>
+                          
+                            </div>
+                          </div>
+                        </div>
+                     </a> 
+                </div>
+             
             </form>
             </div>
              <div class="row">

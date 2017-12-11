@@ -41,7 +41,7 @@
 				
 			<ul class="nav navbar-nav navbar-right">
 				<li><a>Logged in as Admin</a></li>
-				<li><a href="home.html">Logout</a></li>
+				<li><a ngclick="goToHome()">Logout</a></li>
 				
 			</ul>
 			
@@ -55,7 +55,7 @@
 		
 	
 	</div><!-- End of container-->
-	
+	<div class="row">
                     <div class="col-lg-9">
                         <div class="panel-heading">
                                 <div class="panel-title text-left">
@@ -116,6 +116,38 @@
                             </div>
                         </div> 
                 </div>
+        </div>
+         <div class="row">
+			<div class="container" >
+            
+				<table class="table" >
+                    <thead>
+                        <tr>
+                           <!--<th>Product Image</th>-->
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th ></th>
+                            <th ></th>
+                        </tr>
+                    </thead>
+                    <tbody data-ng-init ="getProducts()">
+                      <tr  data-ng-repeat="item in productList">
+                        <!--<td>{{item.productImage}}</td>-->
+                        <td>{{item.productName}}</td>
+                        <td>R{{item.productPrice}}</td>
+                       
+                        <td>
+                            <button type = "button" ng-click = "removeItem(item)" class = "btn btn-danger">
+                                                               <span class = "glyphicon glyphicon-remove"> remove</span>
+                                                            </button>
+                            <button type="button" ng-click="updateProds(item)" class="btn btn-sm btn-default " float-right>Update</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            
+            </div>
+        </div>
  <div class="jumbotron" style="margin-top:10px; margin-bottom:0px; background-color:#F5F5F5; padding-bottom:10px; ">
 	<div class="container">
 	

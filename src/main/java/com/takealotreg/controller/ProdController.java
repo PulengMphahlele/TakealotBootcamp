@@ -90,8 +90,8 @@ public class ProdController {
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, headers="Accept=application/json")
      public @ResponseBody Product newProduct
             (@RequestParam(value = "productImage") MultipartFile productImage,@RequestParam(value = "productId") String productId,
-             @RequestParam(value = "productName") String productName,@RequestParam(value = "productPrice") String productPrice,
-             @RequestParam(value = "productQuantity") String productQuantity) {
+             @RequestParam(value = "productName") String productName,@RequestParam(value = "productPrice") Integer productPrice,
+             @RequestParam(value = "productQuantity") Integer productQuantity) {
      
               
       byte [] byteArr = null;
