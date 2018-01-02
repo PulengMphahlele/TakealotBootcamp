@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.takealotreg.dao.ProdDao;
 import com.takealotreg.model.Product;
 import com.takealotreg.model.User;
+import java.util.Iterator;
 
 @Service("prodService")
 
@@ -47,12 +48,15 @@ public class ProdServiceImpl implements ProdService {
 		
 	}
 
-@Override
-	public Product getProductByPriductId(int productId) {
-		// TODO Auto-generated method stub
-		return dao.getProductByProductId(productId);
-	}
-
+        @Override
+            public Product findById(String productId) {
+                for (Product product : dao.getAllProducts()) {
+                        if (product.getProductId().equals(productId)) {
+                                return product;
+                        }
+                }
+                return null;
+            }
 
 
 
@@ -71,10 +75,22 @@ public class ProdServiceImpl implements ProdService {
 		return dao.getProduct(productId);
 	}
         
-        @Override 
-        public void deleteProductById(Product product) {
-                       dao.deleteProductById(product);
-               }
+      
+    @Override
+    public void updateProduct(Product product) {
+	int index = dao.getAllProducts().indexOf(product);
+	dao.getAllProducts().set(index, product);
+    }
+
+    @Override
+    public void deleteProductById(String productId) {
+	for (Iterator<Product> iterator = dao.getAllProducts().iterator(); iterator.hasNext();) {
+	    Product product = iterator.next();
+	    if (product.getProductId().equals(productId)) {
+		iterator.remove();
+	    }
+	}
+    }
 
 
  

@@ -1,6 +1,6 @@
 package com.takealotreg.controller;
 
-import com.takealotreg.form.FileBucket;
+
 import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -71,20 +71,12 @@ public class ProdController {
         
 	 //------------------- Delete a Product --------------------------------------------------------
      
-    @RequestMapping(value = "/deleteProd/{productId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Product> deleteProduct(@PathVariable("productId") int productId) {
-        System.out.println("Fetching & Deleting Product with id " + productId);
- 
-        Product product = service.getProductByPriductId(productId);
-        if (product == null) {
-            System.out.println("Unable to delete. User with id " + productId + " not found");
-            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
-        }
- 
-        service.deleteProductById(product);
-        return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
-    }
-    
+//   
+//    @RequestMapping(value = "/deleteItems", method = RequestMethod.POST)
+//	public @ResponseBody String  deletePoductById(@RequestBody Product product) {
+//		service.deleteProductById(product.getProductId());
+//		return "OK";
+//	}
        // saving the New product
    
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, headers="Accept=application/json")
@@ -122,4 +114,37 @@ public class ProdController {
             
               return null;
          }
+            
+	@RequestMapping(value = "/product/{productId}", method = RequestMethod.PUT)
+	public ResponseEntity<Product> updateProduct(@PathVariable("productId") String productId, @RequestBody Product product) {
+		System.out.println("Updating Product " + product.getProductQuantity());
+
+		Product currentProduct = service.findById(productId);
+
+		if (currentProduct == null) {
+			System.out.println("Product with id = " + productId + " not found");
+			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+		}
+
+		currentProduct.setProductQuantity(product.getProductQuantity());
+		
+
+		service.updateProduct(currentProduct);
+
+		return new ResponseEntity<Product>(currentProduct, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Product> deleteProduct(@PathVariable("productId") String productId) {
+		System.out.println("Fetching and deleting Product with id " + productId);
+
+		Product product = service.findById(productId);
+		if (product == null) {
+			System.out.println("Unable to delete. Product with id " + productId + " not found");
+			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+		}
+
+		service.deleteProductById(productId);
+		return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
+	}
 }

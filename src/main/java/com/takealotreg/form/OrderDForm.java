@@ -17,7 +17,7 @@ public class OrderDForm {
 	private String accountNumber;
 	
 	private String phone;
-        private String code;
+        private String pCode;
 
 	private String address;
 	
@@ -57,11 +57,11 @@ public class OrderDForm {
     }
 
     public String getCode() {
-        return code;
+        return pCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(String pCode) {
+        this.pCode = pCode;
     }
 
     public String getAddress() {

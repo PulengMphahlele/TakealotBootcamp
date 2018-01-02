@@ -151,7 +151,7 @@ public class UserController {
 //        return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
 //    }
 //        
-        @RequestMapping(path="/user/{userId}",method=RequestMethod.DELETE)
+        @RequestMapping(path="/deleteProduct/{userId}",method=RequestMethod.DELETE)
         public ResponseEntity<Void> deleteById(@PathVariable ("productId") Cart cart) {
             ser.deleteCartById(cart);
             return ResponseEntity.noContent().build();

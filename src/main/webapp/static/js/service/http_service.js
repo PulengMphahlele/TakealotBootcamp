@@ -54,6 +54,12 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 						return response.data;
 					});
 		};
+                var getDataById = function(details) {
+			return $http.delete(details.getUrl, details.fdt).then(
+					function(response) {
+						return response.data;
+					});
+		};
 		var getDataByFile = function(details) {
 			return $http.post(details.getUrl,details.getFormData,{
 			    headers: { 'Content-Type': undefined},
@@ -99,7 +105,7 @@ angular.module("myApp").factory("httpService",['$http',function($http){
 		}
                 
 		return {
-                     
+                        getDataById :getDataById,
 			getData : getData,
 			getDataByForm : getDataByForm,
                         getDataByFrm : getDataByFrm,

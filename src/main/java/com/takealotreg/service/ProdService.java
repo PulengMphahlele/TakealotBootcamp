@@ -14,9 +14,10 @@ public interface ProdService {
 
 
 	public int saveProduct(Product product);
-        public Product getProductByPriductId(int productId);
+        public Product findById(String productId);
 	public List<Product> getAllProducts();
 	public Product getProduct(String productId);
-        public void deleteProductById(Product product);
+        public void deleteProductById(String productId);
+        void updateProduct(Product product);
      
 }

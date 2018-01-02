@@ -37,7 +37,7 @@ public class OrderDetails {
 	private String phone;
         
         @Column(name="Code")
-	private String code;
+	private String pCode;
         
         @Column(name="Address")
 	private String address;
@@ -87,11 +87,11 @@ public class OrderDetails {
     }
 
     public String getCode() {
-        return code;
+        return pCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(String pCode) {
+        this.pCode = pCode;
     }
 
     public String getAddress() {

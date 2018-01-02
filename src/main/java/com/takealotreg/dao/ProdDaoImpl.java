@@ -65,7 +65,7 @@ public class ProdDaoImpl implements ProdDao {
 		return prod;
 	}
 	@Override
-        public void deleteProductById(Product product) {
+        public void deleteProductById(String productId) {
                 String hql="DELETE Product u where u.productId=:productId";
                  sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
 //                Session sess=sessionFactory.getCurrentSession();

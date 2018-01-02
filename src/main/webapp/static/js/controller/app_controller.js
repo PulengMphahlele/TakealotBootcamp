@@ -46,6 +46,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			
 			
 		});
+            
 		/*To add the User*/
 		
 		$scope.createUser = function(){
@@ -115,6 +116,13 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                         $location.path('/home');
 
                     };
+                    
+                    /*Go to Home*/
+                    $scope.doSomething=function(){
+                        alert("I am done Go home now");
+                        $location.path('/home');
+
+                    };
                     $scope.logOut=function(){
          
                         $window.localStorage.clear();
@@ -143,15 +151,14 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                             $location.path('/receipt');
 
                     };   
-                   $scope.randdom = (Math.floor((Math.random() * 10000) + 1)); 
+                   $scope.randdom = (Math.floor((Math.random() * 100000) + 1)); 
                     /*updating cart*/
 
                     $scope.updateCart=function(){
                             $location.path('/addToCart');
 
                     };
-                            
-//        $scope.carts = []; 
+
         $scope.wish = []; 
        
         $scope.addToCart = function(product){
@@ -251,6 +258,35 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                                  alert("Cart Updated");
                             		
                         };
+                        
+                                     // Add cart to database
+           
+           $scope.deleteItem = function(){
+            
+                        var productId=$scope.carts.productId;
+                           
+                        var fdt ={  
+                                "productId": productId, 
+                                "emailAddress":$window.sessionStorage.getItem("emailAddress")
+                        };
+                       
+                        var detail={
+                                getUrl:"rest/deleteProduct",
+                                getFormData:fdt
+                        };
+                   
+                        httpService.getDataById(detail).then(onDelSuccess, onDelError);
+                        
+                         
+                            };
+			var onDelError = function(reason) {
+                                alert("Error updating Item");
+					
+                        };
+                        var onDelSuccess = function(data) {
+                                 alert("Cart Updated");
+                            		
+                        };
             //To Fetch Product List		 
             $scope.getProducts = function(){
            
@@ -271,7 +307,7 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                         };
                         
                         $scope.getProducts();
-                        $scope.count = (localStorage.getItem('count')!==null) ? JSON.parse(localStorage.getItem('count')) : "0";
+                        $scope.count = (localStorage.getItem('count')!==null) ? JSON.parse(localStorage.getItem('count')) : 0;
                         $scope.$watch('count1',function(newValue,oldValue){
                         $scope.count1=$scope.wish.length;
                         console.log($scope.count1+"**");
@@ -281,14 +317,17 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 /* removing Item*/
             $scope.removecart = function(cart){
                 if(cart){
+//                $scope.deleteItem(cart);
                 $scope.carts.splice($scope.carts.indexOf(cart), 1);
                 localStorage.setItem('carts', JSON.stringify($scope.carts));
                 $scope.total -= (cart.productPrice * cart.productQuantity);
                 $scope.count =$scope.count - cart.productQuantity;
                 localStorage.setItem( 'count', angular.toJson( $scope.count ) );
                 localStorage.setItem( 'total', angular.toJson( $scope.total ) );
+                
                 }
             };
+            
             /*Adding Quantity*/
             $scope.addquantity = function(product){
                 var exist=false;
@@ -308,45 +347,49 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                 }                      
             };
 
-    /*Removing Quantity*/
-    $scope.removequantity = function(product){
-        var exist=false;
-        for(var i=0; i < $scope.carts.length;i++){
-            if($scope.carts[i].productName===product.productName)
-                {      
-                    if($scope.carts[i].productQuantity>0){ 
+            /*Removing Quantity*/
+            $scope.removequantity = function(product){
+                var exist=false;
+                for(var i=0; i < $scope.carts.length;i++){
+                    if($scope.carts[i].productName===product.productName)
+                        {      
+                            if($scope.carts[i].productQuantity>0){ 
 
-                        $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)-1;
-                        localStorage.setItem('carts', JSON.stringify($scope.carts));
-                        $scope.total -= product.productPrice;
+                                $scope.carts[i].productQuantity=parseInt($scope.carts[i].productQuantity)-1;
+                                localStorage.setItem('carts', JSON.stringify($scope.carts));
+                                $scope.total -= product.productPrice;
+                                localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
+                                $scope.count -=1;
+                                localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
+                                return count;
+                                exist=true;
+                            };
+                        }
+                    }                      
+                };
+
+                
+                $scope.total = (localStorage.getItem('total')!==null) ? JSON.parse(localStorage.getItem('total')) : 0;
+                $scope.setTotals = function(){
+
+                        angular.forEach($scope.carts,function(cart)
+                        {
+                            total += this.this.toNumber(cart.productQuantity * cart.productPrice);
+                        });
                         localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
-                        $scope.count -=1;
-                        localStorage.setItem( 'count', angular.toJson( $scope.count ) ); 
-                        return count;
-                        exist=true;
-                    };
-                }
-            }                      
-	};
+                        return total;
 
-        $scope.total = (localStorage.getItem('total')!==null) ? JSON.parse(localStorage.getItem('total')) : "0";
-	$scope.setTotals = function(){
+                } ;   
+                $scope.orderNum = (localStorage.getItem('orderNum')!==null) ? JSON.parse(localStorage.getItem('orderNum')) : 1000;
                
-                angular.forEach($scope.carts,function(cart)
-                {
-                    total += this.this.toNumber(cart.productQuantity * cart.productPrice);
-                });
-                localStorage.setItem( 'total', angular.toJson( $scope.total ) ); 
-                return total;
-		
-	} ;   
         /* saving Order details */
         	$scope.saveOrder= function(){
          
+                localStorage.setItem( 'total', angular.toJson( $scope.total ) );
                         var orderId=$scope.orderId;
                         var cardNumber=$scope.cardNumber;
 			var accountNo=$scope.accountNo;
-			var sAdddress=$scope.sAdddress;
+			var sAddress=$scope.sAddress;
                         var city=$scope.city;
                         var phone=$scope.phone;
                         var pCode=$scope.pCode;
@@ -355,10 +398,11 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
                                 "orderId":orderId,
 				"cardNumber":cardNumber,
                                 "accountNo":accountNo,
-				"sAdddress":sAdddress,
+				"sAddress":sAddress,
                                 "phone":phone,
                                 "city":city,
-                                "pCode":pCode
+                                "pCode":pCode,
+                                "emailAddress":$window.sessionStorage.getItem("emailAddress")
 				
 						
 			};
@@ -378,10 +422,17 @@ angular.module('myApp').controller('appctrl',["$scope", "httpService","$location
 			};
 			
 			var onSuccessOrder = function(data) {
+                        localStorage.setItem('streetAdress', angular.toJson($scope.sAddress));
+                        localStorage.setItem('cityName', angular.toJson( $scope.city ));
+                        localStorage.setItem('codeNo', angular.toJson($scope.pCode));
+                        $scope.orderNum +=1;
+                        localStorage.setItem( 'orderNum', angular.toJson( $scope.orderNum ) );
 			alert("successfully ordered");
 			$location.path('/receipt');
 			};
-			
+                $scope.streetAdress = (localStorage.getItem('streetAdress')!==null) ? JSON.parse(localStorage.getItem('streetAdress')) : '';
+                $scope.CityName = (localStorage.getItem('CityName')!==null) ? JSON.parse(localStorage.getItem('CityName')) : '';
+                $scope.codeNo = (localStorage.getItem('codeNo')!==null) ? JSON.parse(localStorage.getItem('codeNo')) : '';
 	
     }
 	
@@ -481,6 +532,31 @@ angular.module('myApp').controller('adminctrl',["$scope", "httpService","$locati
             };
 
             $scope.getProducts();
+            $scope.removeItem=function(){
+                var productId=$scope.productId;
+                           
+                        var fdt ={  
+                                "productId": productId, 
+                                "emailAddress":$window.sessionStorage.getItem("emailAddress")
+                        };
+                       
+                        var detail={
+                                getUrl:"rest/deleteItem/{id}",
+                                getFormData:fdt
+                        };
+                   
+                        httpService.getDataById(detail).then(onDelSuccess, onDelError);
+                        
+                         
+                            };
+			var onDelError = function(reason) {
+                                alert("Product not deleted");
+					
+                        };
+                        var onDelSuccess = function(data) {
+                                 alert("Product deleted");
+                    
+            };
      }
 ]);
 
